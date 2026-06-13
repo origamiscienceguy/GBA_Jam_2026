@@ -57,11 +57,11 @@ GRAPHICS_EXTS	:=
 
 # Source files to compile
 SOURCE_FILES	:= source/main.c
-SOURCE_DIRS	:= source := include := source/irq_handling := data/music
+SOURCE_DIRS	:= source := include := source/irq_handling := data/music := data/sfx
 SOURCE_EXTS	:= c := s := S
 
 # Include directories
-INCLUDES	:= include := source/irq_handling := source := source/audio := source/scenes
+INCLUDES	:= include := source/irq_handling := source := data/music := data/sfx
 
 # Library directories, with /include and /lib
 LIBDIRS		:= $(DEVKITPRO)/libtonc
