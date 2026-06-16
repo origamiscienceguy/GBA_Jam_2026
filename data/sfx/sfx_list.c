@@ -1,5 +1,5 @@
 #include "tonc.h"
-#include "sfx_list.h"
+#include "audio.h"
 
 extern cu8 blackMagic[];
 extern cu32 blackMagicLength;
@@ -30,36 +30,19 @@ extern cu32 restoreLength;
 extern cu8 slash[];
 extern cu32 slashLength;
 
-cu8 *sfxList[] = {
-	blackMagic,
-	buttonSelect1,
-	buttonSelect2,
-	criticalHit,
-	defend,
-	explosion,
-	hex,
-	levelUp,
-	missile1,
-	missile2,
-	missileFull,
-	powerUp,
-	restore,
-	slash,
-};
-
-cu32 *sfxListLength[] = {
-	&blackMagicLength,
-	&buttonSelect1Length,
-	&buttonSelect2Length,
-	&criticalHitLength,
-	&defendLength,
-	&explosionLength,
-	&hexLength,
-	&levelUpLength,
-	&missile1Length,
-	&missile2Length,
-	&missileFullLength,
-	&powerUpLength,
-	&restoreLength,
-	&slashLength,
+const Sound sfxList[] = {
+	{.source = blackMagic, .length = &blackMagicLength, .mode = CUT},
+	{.source = buttonSelect1, .length = &buttonSelect1Length, .mode = CUT},
+	{.source = buttonSelect2, .length = &buttonSelect2Length, .mode = CUT},
+	{.source = criticalHit, .length = &criticalHitLength, .mode = CUT},
+	{.source = defend, .length = &defendLength, .mode = CUT},
+	{.source = explosion, .length = &explosionLength, .mode = CUT},
+	{.source = hex, .length = &hexLength, .mode = CUT},
+	{.source = levelUp, .length = &levelUpLength, .mode = CUT},
+	{.source = missile1, .length = &missile1Length, .mode = CUT},
+	{.source = missile2, .length = &missile2Length, .mode = CUT},
+	{.source = missileFull, .length = &missileFullLength, .mode = CUT},
+	{.source = powerUp, .length = &powerUpLength, .mode = CUT},
+	{.source = restore, .length = &restoreLength, .mode = CUT},
+	{.source = slash, .length = &slashLength, .mode = CUT},
 };

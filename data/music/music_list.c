@@ -1,21 +1,15 @@
 #include "tonc.h"
-#include "music_list.h"
+#include "audio.h"
 
-extern cu8 fwf_main_loop[];
-extern cu32 fwf_main_loop_length;
-extern cu8 fwf_menu[];
-extern cu32 fwf_menu_length;
-extern cu8 fwf_gameover[];
-extern cu32 fwf_gameover_length;
+extern cu8 fwfMainLoop[];
+extern cu32 fwfMainLoopLength;
+extern cu8 fwfMenu[];
+extern cu32 fwfMenuLength;
+extern cu8 fwfGameover[];
+extern cu32 fwfGameoverLength;
 
-cu8 *musicList[3] = {
-	fwf_main_loop,
-	fwf_menu,
-	fwf_gameover,
-};
-
-cu32 *musicListLength[3] = {
-	&fwf_main_loop_length,
-	&fwf_menu_length,
-	&fwf_gameover_length,
+const Sound musicList[] = {
+	{.source = fwfMainLoop, .length = &fwfMainLoopLength, .mode = LOOP},
+	{.source = fwfMenu, .length = &fwfMenuLength, .mode = LOOP},
+	{.source = fwfGameover, .length = &fwfGameoverLength, .mode = LOOP},
 };

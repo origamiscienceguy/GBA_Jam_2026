@@ -1,4 +1,3 @@
-#include "tonc.h"
 #include "main.h"
 
 Inputs inputs = {.lastFrame = 0, .currentFrame = 0, .pressed = 0, .held = 0, .released = 0,};
@@ -37,18 +36,6 @@ void initialize(){
 	REG_TM0CNT = TM_FREQ_1 | TM_ENABLE;
 	playSong(MAIN_LOOP);
 	
-}
-
-void playSong(u8 songID){
-	REG_DMA1CNT = 0;
-	REG_DMA1SAD = (u32)musicList[songID];
-	REG_DMA1CNT = DMA_DST_FIXED | DMA_SRC_INC | DMA_REPEAT | DMA_32 | DMA_AT_SPECIAL | DMA_ENABLE;
-}
-
-void playSFX(u8 sfxID){
-	REG_DMA2CNT = 0;
-	REG_DMA2SAD = (u32)sfxList[sfxID];
-	REG_DMA2CNT = DMA_DST_FIXED | DMA_SRC_INC | DMA_REPEAT | DMA_32 | DMA_AT_SPECIAL | DMA_ENABLE;
 }
 
 void handleInputs(){
