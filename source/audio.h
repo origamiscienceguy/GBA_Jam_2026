@@ -38,18 +38,18 @@ enum SfxID{
 //structs
 typedef const struct Sound{
 	cu8 *source;
-	cu32 *length;
+	cu32 length;
 	const enum SoundMode mode;
 }Sound;
 
-typedef struct SoundManager{
-	u32 musicSamplesLeft;
-	u32 sfxSamplesLeft;
-	u8 musicPlaying;
-	u8 sfxPlaying;
-	u16 timerResetValue;
-	enum SoundMode musicMode;
-	enum SoundMode sfxMode;
+typedef volatile struct SoundManager{
+	vu32 musicSamplesLeft;
+	vu32 sfxSamplesLeft;
+	vu8 musicPlaying;
+	vu8 sfxPlaying;
+	vu16 timerResetValue;
+	volatile enum SoundMode musicMode;
+	volatile enum SoundMode sfxMode;
 }SoundManager;
 
 //external data
@@ -59,8 +59,8 @@ extern SoundManager soundManager;
 //function declarations
 void playSong(u8);
 void endSong();
-void playSFX(u8);
-void endSFX();
+void playSfx(u8);
+void endSfx();
 void manageTimer();
 
 

@@ -1,5 +1,6 @@
 #include "tonc.h"
 #include "audio.h"
+#include "interrupt.h"
 
 
 //enums
@@ -20,3 +21,4 @@ typedef struct Inputs{
 //function declarations
 void initialize();
 void handleInputs();
+void interruptInit();

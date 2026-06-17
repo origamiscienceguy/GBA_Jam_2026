@@ -21,7 +21,7 @@ SoundManager soundManager = {
 //functions
 
 void playSong(u8 songID){
-	soundManager.musicSamplesLeft = *sounds[MUSIC][songID].length;
+	soundManager.musicSamplesLeft = sounds[MUSIC][songID].length;
 	soundManager.musicPlaying = songID;
 	soundManager.musicMode = sounds[MUSIC][songID].mode;
 	manageTimer();
@@ -35,7 +35,7 @@ void endSong(){
 }
 
 void playSFX(u8 sfxID){
-	soundManager.sfxSamplesLeft = *sounds[SFX][sfxID].length;
+	soundManager.sfxSamplesLeft = sounds[SFX][sfxID].length;
 	soundManager.sfxPlaying = sfxID;
 	soundManager.sfxMode = sounds[SFX][sfxID].mode;
 	manageTimer();
@@ -44,10 +44,16 @@ void playSFX(u8 sfxID){
 	REG_DMA2CNT = DMA_DST_FIXED | DMA_SRC_INC | DMA_REPEAT | DMA_32 | DMA_AT_SPECIAL | DMA_ENABLE;
 }
 
+void endSfx(){
+
+}
+
 void manageTimer(){
 	if(soundManager.musicMode == SILENT){
 		if(soundManager.sfxMode == SILENT){
 			//no music, no sfx 
+			REG_TM1CNT_L = 0;
+			REG_TM1CNT_H = 0;
 		}
 		else{
 			//no music, yes sfx
@@ -63,7 +69,7 @@ void manageTimer(){
 				REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;
 			}
 			else{
-				soundManager.timerResetValue = soundManager.musicSamplesLeft;
+				soundManager.timerResetValue = (0x10000 - soundManager.musicSamplesLeft);
 				REG_TM1CNT_L = soundManager.timerResetValue;
 				REG_TM1CNT_H = 0;
 				REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;

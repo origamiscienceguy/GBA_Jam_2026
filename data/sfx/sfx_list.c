@@ -2,47 +2,47 @@
 #include "audio.h"
 
 extern cu8 blackMagic[];
-extern cu32 blackMagicLength;
+cu32 blackMagicLength = 104858;
 extern cu8 buttonSelect1[];
-extern cu32 buttonSelect1Length;
+cu32 buttonSelect1Length = 3766;
 extern cu8 buttonSelect2[];
-extern cu32 buttonSelect2Length;
+cu32 buttonSelect2Length = 15131;
 extern cu8 criticalHit[];
-extern cu32 criticalHitLength;
+cu32 criticalHitLength = 22599;
 extern cu8 defend[];
-extern cu32 defendLength;
+cu32 defendLength = 42598;
 extern cu8 explosion[];
-extern cu32 explosionLength;
+cu32 explosionLength = 31711;
 extern cu8 hex[];
-extern cu32 hexLength;
+cu32 hexLength = 22599;
 extern cu8 levelUp[];
-extern cu32 levelUpLength;
+cu32 levelUpLength = 35829;
 extern cu8 missile1[];
-extern cu32 missile1Length;
+cu32 missile1Length = 21497;
 extern cu8 missile2[];
-extern cu32 missile2Length;
+cu32 missile2Length = 28322;
 extern cu8 missileFull[];
-extern cu32 missileFullLength;
+cu32 missileFullLength = 52548;
 extern cu8 powerUp[];
-extern cu32 powerUpLength;
+cu32 powerUpLength = 38362;
 extern cu8 restore[];
-extern cu32 restoreLength;
+cu32 restoreLength = 22599;
 extern cu8 slash[];
-extern cu32 slashLength;
+cu32 slashLength = 34669;
 
 const Sound sfxList[] = {
-	{.source = blackMagic, .length = &blackMagicLength, .mode = CUT},
-	{.source = buttonSelect1, .length = &buttonSelect1Length, .mode = CUT},
-	{.source = buttonSelect2, .length = &buttonSelect2Length, .mode = CUT},
-	{.source = criticalHit, .length = &criticalHitLength, .mode = CUT},
-	{.source = defend, .length = &defendLength, .mode = CUT},
-	{.source = explosion, .length = &explosionLength, .mode = CUT},
-	{.source = hex, .length = &hexLength, .mode = CUT},
-	{.source = levelUp, .length = &levelUpLength, .mode = CUT},
-	{.source = missile1, .length = &missile1Length, .mode = CUT},
-	{.source = missile2, .length = &missile2Length, .mode = CUT},
-	{.source = missileFull, .length = &missileFullLength, .mode = CUT},
-	{.source = powerUp, .length = &powerUpLength, .mode = CUT},
-	{.source = restore, .length = &restoreLength, .mode = CUT},
-	{.source = slash, .length = &slashLength, .mode = CUT},
+	{.source = blackMagic, .length = blackMagicLength, .mode = CUT},
+	{.source = buttonSelect1, .length = buttonSelect1Length, .mode = CUT},
+	{.source = buttonSelect2, .length = buttonSelect2Length, .mode = CUT},
+	{.source = criticalHit, .length = criticalHitLength, .mode = CUT},
+	{.source = defend, .length = defendLength, .mode = CUT},
+	{.source = explosion, .length = explosionLength, .mode = CUT},
+	{.source = hex, .length = hexLength, .mode = CUT},
+	{.source = levelUp, .length = levelUpLength, .mode = CUT},
+	{.source = missile1, .length = missile1Length, .mode = CUT},
+	{.source = missile2, .length = missile2Length, .mode = CUT},
+	{.source = missileFull, .length = missileFullLength, .mode = CUT},
+	{.source = powerUp, .length = powerUpLength, .mode = CUT},
+	{.source = restore, .length = restoreLength, .mode = CUT},
+	{.source = slash, .length = slashLength, .mode = CUT},
 };

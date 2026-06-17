@@ -22,7 +22,7 @@ int main(){
 				sfxID = BLACK_MAGIC;
 			}
 			else sfxID++;
-			playSFX(sfxID);
+			//playSFX(sfxID);
 		}
 	}
 }
@@ -35,7 +35,30 @@ void initialize(){
 	REG_TM0D = 0x10000 - 512;
 	REG_TM0CNT = TM_FREQ_1 | TM_ENABLE;
 	playSong(MAIN_LOOP);
+	interruptInit();
+}
+
+void interruptInit(){
+	//disable interrupts
+	REG_IME = 0;
+
+	//set the interrupt service routine functions and priority order (first is highest priority)
+	u16 priorityList[14] = {IRQ_HBLANK, IRQ_VCOUNT, IRQ_VBLANK, IRQ_TIMER2, IRQ_TIMER1, IRQ_SERIAL,
+						   IRQ_TIMER0, IRQ_TIMER3, IRQ_DMA0, IRQ_DMA1, IRQ_DMA2, IRQ_KEYPAD, IRQ_DMA3, IRQ_GAMEPAK};
+	void (*isrFunctionPointers[14])() = {0, 0, vblankISR, 0, timer1ISR, 0, 0, 0, 0, 0, 0, 0, 0, cartridgeISR};
 	
+	//apply the chosen priorities
+	setInterruptHandlers(priorityList, (u32 *)isrFunctionPointers);
+	//set the master service routine
+	*(u32 *)0x03007FFC = (u32)&irqMasterServiceRoutine;
+	
+	//interupt master service routine expects every bit in REG_IE to be set when not in an interrupt state
+	REG_IE = 0x1FFF; 
+	
+	//enable Vblank interrupts
+	REG_DISPCNT = 0;
+	REG_DISPSTAT = DSTAT_VBL_IRQ; 
+	REG_WAITCNT = WS_SRAM_8 | WS_ROM0_N3 | WS_ROM0_S1;
 }
 
 void handleInputs(){

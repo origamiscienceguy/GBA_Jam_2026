@@ -13,7 +13,23 @@ void timer1ISR(){
 			}
 		}
 		else{
-			soundManager.musicSamplesLeft -= soundManager.timerResetValue;
+			soundManager.musicSamplesLeft -= (0x10000 - soundManager.timerResetValue);
+			manageTimer();
+		}
+	}
+	//check if sfx has reached the end
+	if(soundManager.sfxMode != SILENT){
+		if((0x10000 - soundManager.timerResetValue) >= soundManager.sfxSamplesLeft){
+			if(soundManager.sfxMode == LOOP){
+				playSong(soundManager.sfxPlaying);
+			}
+			else{
+				endSfx();
+			}
+		}
+		else{
+			soundManager.sfxSamplesLeft -= (0x10000 - soundManager.timerResetValue);
+			manageTimer();
 		}
 	}
 }
