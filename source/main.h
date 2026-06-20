@@ -28,3 +28,4 @@ extern enum FrameState frameState;
 void initialize();
 void handleInputs();
 void interruptInit();
+void debug();

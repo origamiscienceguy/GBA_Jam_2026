@@ -3,27 +3,13 @@
 Inputs inputs = {.lastFrame = 0, .currentFrame = 0, .pressed = 0, .held = 0, .released = 0,};
 enum FrameState frameState = WORKING;
 
+
 int main(){
 	initialize();
-	u8 songID = MAIN_LOOP;
-	u8 sfxID = BLACK_MAGIC;
+
 	while(1){
 		handleInputs();
-		if(inputs.pressed & KEY_A){
-			if(songID == GAME_OVER){
-				songID = MAIN_LOOP;
-			}
-			else songID++;
-			playSong(songID);
-		}
-		if(inputs.pressed & KEY_B){
-			if(sfxID == SLASH){
-				sfxID = BLACK_MAGIC;
-			}
-			else sfxID++;
-			playSfx(sfxID);
-		}
-		
+		debug();
 		frameState = WAITING_FOR_VBLANK;
 		while(frameState != NEW_FRAME_START){
 			Halt();
@@ -39,7 +25,6 @@ void initialize(){
 	REG_DMA2DAD = (u32) 0x040000A4;
 	REG_TM0D = 0x10000 - 512;
 	REG_TM0CNT = TM_FREQ_1 | TM_ENABLE;
-	playSfx(BLACK_MAGIC);
 	interruptInit();
 }
 
@@ -72,5 +57,24 @@ void handleInputs(){
 	inputs.pressed = inputs.currentFrame & ~inputs.lastFrame;
 	inputs.released = inputs.lastFrame & ~inputs.currentFrame;
 	inputs.held = inputs.currentFrame & inputs.lastFrame;
+}
+
+void debug(){
+	static u8 songID = MAIN_LOOP;
+	static u8 sfxID = BLACK_MAGIC;
+	if(inputs.pressed & KEY_A){
+		if(songID == GAME_OVER){
+			songID = MAIN_LOOP;
+		}
+		else songID++;
+		playSong(songID);
+	}
+	if(inputs.pressed & KEY_B){
+		if(sfxID == SLASH){
+			sfxID = BLACK_MAGIC;
+		}
+		else sfxID++;
+		playSfx(sfxID);
+	}
 }
 
