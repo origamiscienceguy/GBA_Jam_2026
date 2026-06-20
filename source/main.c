@@ -1,14 +1,13 @@
 #include "main.h"
 
 Inputs inputs = {.lastFrame = 0, .currentFrame = 0, .pressed = 0, .held = 0, .released = 0,};
+enum FrameState frameState = WORKING;
 
 int main(){
 	initialize();
 	u8 songID = MAIN_LOOP;
 	u8 sfxID = BLACK_MAGIC;
 	while(1){
-		while(REG_VCOUNT != 159);
-		while(REG_VCOUNT != 160);
 		handleInputs();
 		if(inputs.pressed & KEY_A){
 			if(songID == GAME_OVER){
@@ -22,8 +21,14 @@ int main(){
 				sfxID = BLACK_MAGIC;
 			}
 			else sfxID++;
-			//playSFX(sfxID);
+			playSfx(sfxID);
 		}
+		
+		frameState = WAITING_FOR_VBLANK;
+		while(frameState != NEW_FRAME_START){
+			Halt();
+		}
+		frameState = WORKING;
 	}
 }
 
@@ -34,7 +39,7 @@ void initialize(){
 	REG_DMA2DAD = (u32) 0x040000A4;
 	REG_TM0D = 0x10000 - 512;
 	REG_TM0CNT = TM_FREQ_1 | TM_ENABLE;
-	playSong(MAIN_LOOP);
+	playSfx(BLACK_MAGIC);
 	interruptInit();
 }
 

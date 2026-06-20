@@ -4,6 +4,11 @@
 
 
 //enums
+enum FrameState{
+	WORKING,
+	WAITING_FOR_VBLANK,
+	NEW_FRAME_START,
+};
 
 //struct declarations
 typedef struct Inputs{
@@ -17,6 +22,7 @@ typedef struct Inputs{
 
 
 //external data
+extern enum FrameState frameState;
 
 //function declarations
 void initialize();

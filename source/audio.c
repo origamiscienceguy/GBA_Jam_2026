@@ -21,6 +21,10 @@ SoundManager soundManager = {
 //functions
 
 void playSong(u8 songID){
+	//if sfx is playing, modify its remaining samples by the timer
+	if(soundManager.sfxMode != SILENT){
+		soundManager.sfxSamplesLeft -= (REG_TM1CNT_L - soundManager.timerResetValue);
+	}
 	soundManager.musicSamplesLeft = sounds[MUSIC][songID].length;
 	soundManager.musicPlaying = songID;
 	soundManager.musicMode = sounds[MUSIC][songID].mode;
@@ -31,10 +35,18 @@ void playSong(u8 songID){
 }
 
 void endSong(){
-
+	soundManager.musicSamplesLeft = 0;
+	soundManager.musicPlaying = 0;
+	soundManager.musicMode = SILENT;
+	manageTimer();
+	REG_DMA1CNT = 0;
 }
 
-void playSFX(u8 sfxID){
+void playSfx(u8 sfxID){
+	//if music is playing, modify its remaining samples by the timer
+	if(soundManager.musicMode != SILENT){
+		soundManager.musicSamplesLeft -= (REG_TM1CNT_L - soundManager.timerResetValue);
+	}
 	soundManager.sfxSamplesLeft = sounds[SFX][sfxID].length;
 	soundManager.sfxPlaying = sfxID;
 	soundManager.sfxMode = sounds[SFX][sfxID].mode;
@@ -45,7 +57,11 @@ void playSFX(u8 sfxID){
 }
 
 void endSfx(){
-
+	soundManager.sfxSamplesLeft = 0;
+	soundManager.sfxPlaying = 0;
+	soundManager.sfxMode = SILENT;
+	manageTimer();
+	REG_DMA2CNT = 0;
 }
 
 void manageTimer(){
@@ -56,27 +72,53 @@ void manageTimer(){
 			REG_TM1CNT_H = 0;
 		}
 		else{
-			//no music, yes sfx
+			//yes sfx, no music
+			sfxNext();
 		}
 	}
 	else{
 		if(soundManager.sfxMode == SILENT){
 			//yes music, no sfx
-			if(soundManager.musicSamplesLeft > 0x10000){
-				soundManager.timerResetValue = 0;
-				REG_TM1CNT_L = soundManager.timerResetValue;
-				REG_TM1CNT_H = 0;
-				REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;
-			}
-			else{
-				soundManager.timerResetValue = (0x10000 - soundManager.musicSamplesLeft);
-				REG_TM1CNT_L = soundManager.timerResetValue;
-				REG_TM1CNT_H = 0;
-				REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;
-			}
+			musicNext();
 		}
 		else{
 			//yes music, yes sfx
+			if(soundManager.musicSamplesLeft > soundManager.sfxSamplesLeft){
+				sfxNext();
+			}
+			else{
+				musicNext();
+			}
 		}
+	}
+}
+
+void musicNext(){
+	if(soundManager.musicSamplesLeft > 0x10000){
+		soundManager.timerResetValue = 0;
+		REG_TM1CNT_L = soundManager.timerResetValue;
+		REG_TM1CNT_H = 0;
+		REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;
+	}
+	else{
+		soundManager.timerResetValue = (0x10000 - soundManager.musicSamplesLeft);
+		REG_TM1CNT_L = soundManager.timerResetValue;
+		REG_TM1CNT_H = 0;
+		REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;
+	}
+}
+
+void sfxNext(){
+	if(soundManager.sfxSamplesLeft > 0x10000){
+		soundManager.timerResetValue = 0;
+		REG_TM1CNT_L = soundManager.timerResetValue;
+		REG_TM1CNT_H = 0;
+		REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;
+	}
+	else{
+		soundManager.timerResetValue = (0x10000 - soundManager.sfxSamplesLeft);
+		REG_TM1CNT_L = soundManager.timerResetValue;
+		REG_TM1CNT_H = 0;
+		REG_TM1CNT_H = TM_FREQ_1 | TM_CASCADE | TM_IRQ | TM_ENABLE;
 	}
 }

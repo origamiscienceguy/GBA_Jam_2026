@@ -62,6 +62,8 @@ void endSong();
 void playSfx(u8);
 void endSfx();
 void manageTimer();
+void musicNext();
+void sfxNext();
 
 
 
