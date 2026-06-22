@@ -19,13 +19,10 @@ int main(){
 }
 
 void initialize(){
-	REG_SNDSTAT = SSTAT_ENABLE;
-	REG_SNDDSCNT = SDS_A100 | SDS_B100 | SDS_AR | SDS_AL | SDS_ATMR0 | SDS_ARESET | SDS_BR | SDS_BL | SDS_BTMR0 | SDS_BRESET;
-	REG_DMA1DAD = (u32) 0x040000A0;
-	REG_DMA2DAD = (u32) 0x040000A4;
-	REG_TM0D = 0x10000 - 512;
-	REG_TM0CNT = TM_FREQ_1 | TM_ENABLE;
 	interruptInit();
+	audioInit();
+	videoInit();
+	textInit();
 }
 
 void interruptInit(){
@@ -62,6 +59,9 @@ void handleInputs(){
 void debug(){
 	static u8 songID = MAIN_LOOP;
 	static u8 sfxID = BLACK_MAGIC;
+	static enum Colors color = BLACK;
+	
+	//press A to cycle music tracks
 	if(inputs.pressed & KEY_A){
 		if(songID == GAME_OVER){
 			songID = MAIN_LOOP;
@@ -69,6 +69,8 @@ void debug(){
 		else songID++;
 		playSong(songID);
 	}
+	
+	//press B to cycle sound effects
 	if(inputs.pressed & KEY_B){
 		if(sfxID == SLASH){
 			sfxID = BLACK_MAGIC;
@@ -76,5 +78,23 @@ void debug(){
 		else sfxID++;
 		playSfx(sfxID);
 	}
+	
+	//press R to cycle palettes
+	if(inputs.pressed & KEY_R){
+		if(color == BLUE){
+			color = BLACK;
+		}
+		else{
+			color++;
+		}
+		Palette newPalette = {PalettesBitmap[color << 1], PalettesBitmap[(color << 1) + 1]};
+		setPalette(newPalette);
+	}
+	
+	//put some sample text on-screen
+	enum TextChar sampleTextMessage[] = {S,A,M,P,L,E,SPACE,T,E,X,T};
+	TextField sampleText = {.xPos = 20, .yPos = 20, .length = 11, .message = sampleTextMessage};
+	static u8 sampleTextID;
+	sampleTextID = writeText(sampleText);
 }
 

@@ -64,6 +64,7 @@ void endSfx();
 void manageTimer();
 void musicNext();
 void sfxNext();
+void audioInit();
 
 
 
