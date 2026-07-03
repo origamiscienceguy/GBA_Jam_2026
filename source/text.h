@@ -1,9 +1,10 @@
 #include "tonc.h"
+#include "video.h"
 
 //enums
 enum TextFieldMode{
-	UNUSED,
-	ACTIVE,
+	TEXT_UNUSED,
+	TEXT_ACTIVE,
 };
 
 enum TextChar{

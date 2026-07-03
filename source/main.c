@@ -2,6 +2,7 @@
 
 Inputs inputs = {.lastFrame = 0, .currentFrame = 0, .pressed = 0, .held = 0, .released = 0,};
 enum FrameState frameState = WORKING;
+u32 globalTimer = 0;
 
 
 int main(){
@@ -9,6 +10,9 @@ int main(){
 
 	while(1){
 		handleInputs();
+		vblankUpdate();
+		animationManager();
+		globalTimer++;
 		debug();
 		frameState = WAITING_FOR_VBLANK;
 		while(frameState != NEW_FRAME_START){
@@ -92,9 +96,88 @@ void debug(){
 	}
 	
 	//put some sample text on-screen
+	static u8 sampleTextID;
+	static u8 sampleFirstFrame = 1;
+	if(!sampleFirstFrame){
+		closeText(sampleTextID);
+	}
+	else{
+		sampleFirstFrame = 0;
+	}	
 	enum TextChar sampleTextMessage[] = {S,A,M,P,L,E,SPACE,T,E,X,T};
 	TextField sampleText = {.xPos = 20, .yPos = 20, .length = 11, .message = sampleTextMessage};
-	static u8 sampleTextID;
 	sampleTextID = writeText(sampleText);
+	
+	//put some blinking text on-screen
+	static u8 blinkingTextID;
+	if((globalTimer & 15) == 0){
+		enum TextChar blinkingTextMessage[] = {B,L,I,N,K,I,N,G,SPACE,T,E,X,T};
+		TextField blinkingText = {.xPos = 120, .yPos = 30, .length = 13, .message = blinkingTextMessage};
+		blinkingTextID = writeText(blinkingText);
+	}
+	if((globalTimer & 15) == 8){
+		closeText(blinkingTextID);
+	}
+	
+	//put some text that changes on-screen
+	static u8 changingTextID;
+	static u8 firstFrame = 1;
+	enum TextChar changingTextMessage1[] = {T,E,X,T};
+	enum TextChar changingTextMessage2[] = {T,H,A,T};
+	enum TextChar changingTextMessage3[] = {C,H,A,N,G,E,S};
+	if((globalTimer & 63) == 0){
+		TextField changingText = {.xPos = 160, .yPos = 55, .length = 4, .message = changingTextMessage1};
+		if(!firstFrame){
+			closeText(changingTextID);
+		}
+		else{
+			firstFrame = 0;
+		}
+		changingTextID = writeText(changingText);
+	}
+	if((globalTimer & 63) == 21){
+		TextField changingText = {.xPos = 160, .yPos = 55, .length = 4, .message = changingTextMessage2};
+		closeText(changingTextID);
+		changingTextID = writeText(changingText);
+	}
+	if((globalTimer & 63) == 42){
+		TextField changingText = {.xPos = 160, .yPos = 55, .length = 7, .message = changingTextMessage3};
+		closeText(changingTextID);
+		changingTextID = writeText(changingText);
+	}
+	
+	//put a graphic on screen
+	u16 graphicsBuffer[128];
+	//zero out the graphics buffer
+	for(u32 i = 0; i < 64; i++){
+		graphicsBuffer[i] = 0;
+	}
+	//display the default palette
+	if((globalTimer & 127) == 0){
+		for(u32 i = 0; i < 10; i++){
+			graphicsBuffer[i * 3] = SE_ID((1 + i) * 8) | SE_PALBANK(graphicsList[i].defaultPalette);
+			graphicsBuffer[i * 3 + 1] = SE_ID((1 + i) * 8 + 1) | SE_PALBANK(graphicsList[i].defaultPalette);
+			graphicsBuffer[i * 3 + 32] = SE_ID((1 + i) * 8 + 2) | SE_PALBANK(graphicsList[i].defaultPalette);
+			graphicsBuffer[i * 3 + 33] = SE_ID((1 + i) * 8 + 3) | SE_PALBANK(graphicsList[i].defaultPalette);
+		}
+		vramAddUpdate(&se_mat[28][17][0], graphicsBuffer, 32);
+	}
+	//display the inverted palette
+	if((globalTimer & 127) == 64){
+		for(u32 i = 0; i < 10; i++){
+			graphicsBuffer[i * 3] = SE_ID((1 + i) * 8 + 4) | SE_PALBANK(graphicsList[i].defaultPalette);
+			graphicsBuffer[i * 3 + 1] = SE_ID((1 + i) * 8 + 5) | SE_PALBANK(graphicsList[i].defaultPalette);
+			graphicsBuffer[i * 3 + 32] = SE_ID((1 + i) * 8 + 6) | SE_PALBANK(graphicsList[i].defaultPalette);
+			graphicsBuffer[i * 3 + 33] = SE_ID((1 + i) * 8 + 7) | SE_PALBANK(graphicsList[i].defaultPalette);
+		}
+		vramAddUpdate(&se_mat[28][17][0], graphicsBuffer, 32);
+	}
+	
+	//add animated sprites of the templar and the witch
+	static u32 playing = 0;
+	if(playing == 0){
+		playAnimation(ANIM_SLASH, 0, 80);
+		playing = 1;
+	}
 }
 
