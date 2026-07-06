@@ -44,6 +44,16 @@ void videoInit(){
 	for(u32 i = 0; i < 16; i++){
 		activeAnimations[i].mode = ANIMMANAGER_UNUSED;
 	}
+	//set the castle wall background
+	memcpy32(&(tile_mem[0][128]), graphicsList[GFX_WALL_BACKGROUND].data, graphicsList[GFX_WALL_BACKGROUND].numWords);
+	for(u32 i = 0; i < 20; i++){
+		for(u32 j = 0; j < 15; j++){
+			se_mem[28][i * 32 + j * 2] = (u16)((graphicsList[GFX_WALL_BACKGROUND_MAP].data[i * 15 + j] & 0xffff) + 4224);
+			se_mem[28][i * 32 + j * 2 + 1] = (u16)(((graphicsList[GFX_WALL_BACKGROUND_MAP].data[i * 15 + j] & 0xffff0000) >> 16) + 4224);
+		}
+		
+	}
+	playAnimation(ANIM_SLASH, 0, 60);
 }
 
 void vblankUpdate(){
@@ -93,6 +103,8 @@ u8 playAnimation(u32 animationID, u32 xPos, u32 yPos){
 
 void endAnimation(u8 slot){
 	activeAnimations[slot].mode = ANIMMANAGER_UNUSED;
+	//rework the graphics associated with animations
+	
 }
 
 void animationManager(){

@@ -10,10 +10,11 @@ int main(){
 
 	while(1){
 		handleInputs();
+		globalTimer++;
 		vblankUpdate();
 		animationManager();
-		globalTimer++;
-		debug();
+		
+		//debug();
 		frameState = WAITING_FOR_VBLANK;
 		while(frameState != NEW_FRAME_START){
 			Halt();

@@ -11,6 +11,12 @@ enum FrameState{
 	NEW_FRAME_START,
 };
 
+enum Scripts{
+	MAIN_MENU,
+	SETTINGS,
+	BATTLE,
+};
+
 //struct declarations
 typedef struct Inputs{
 	u16 lastFrame;

@@ -56,6 +56,8 @@ enum GraphicsEnum{
 	GFX_BLACK_OCTAGON,
 	GFX_BLANK,
 	GFX_TEMPLAR,
+	GFX_WALL_BACKGROUND,
+	GFX_WALL_BACKGROUND_MAP,
 };
 
 enum AnimationEnum{
