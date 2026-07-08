@@ -11,10 +11,28 @@ enum FrameState{
 	NEW_FRAME_START,
 };
 
+enum Actions{
+	ACT_EMPTY,
+	ACT_SLASH,
+	ACT_TWIN_SLASH,
+	ACT_TRIPLE_SLASH,
+	ACT_SUMMON_BLADE,
+	ACT_BLOOD_BLADE,
+	ACT_BLACK_MAGIC,
+	ACT_MEAT,
+	ACT_CRANBERRY,
+	ACT_ICE_CREAM,
+	ACT_FOCUS,
+	ACT_MEDITATE,
+	ACT_GUARD,
+	ACT_PARRY,
+	ACT_REFRESH,
+};
+
 enum Scripts{
-	MAIN_MENU,
-	SETTINGS,
-	BATTLE,
+	SCR_BATTLE,
+	SCR_MAIN_MENU,
+	SCR_SETTINGS,
 };
 
 //struct declarations
@@ -27,9 +45,22 @@ typedef struct Inputs{
 }Inputs;
 
 
+typedef struct GameState{
+	enum Scripts currentScript;
+	enum Actions actionPalette[10];
+	u8 actionPosition[14];
+	u8 selectedAction;
+}GameState;
+
+typedef struct Script{
+	void (*scriptInit)(void);
+	void (*scriptRun)(void);
+}Script;
 
 //external data
 extern enum FrameState frameState;
+extern GameState gameState;
+extern Script scriptList[];
 
 //function declarations
 void initialize();

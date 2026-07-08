@@ -1,5 +1,6 @@
 #include "video.h"
 
+extern cu32 EmptyTiles[];
 extern cu32 Black_Magic_1Tiles[];
 extern cu32 Black_Magic_2Tiles[];
 extern cu32 Blank_OctagonTiles[];
@@ -36,6 +37,7 @@ extern cu32 Wall_BackgroundMap[];
 //extern cu32 [];
 
 Graphic graphicsList[]={
+{.data = EmptyTiles, .numWords = 32, .width = 2, .height = 2, .defaultPalette = 0, .shape = 0, .size = 1},
 {.data = Black_Magic_1Tiles, .numWords = 32, .width = 2, .height = 2, .defaultPalette = 0, .shape = 0, .size = 1},
 {.data = Black_Magic_2Tiles, .numWords = 32, .width = 2, .height = 2, .defaultPalette = 0, .shape = 0, .size = 1},
 {.data = Blood_Blade_1Tiles, .numWords = 32, .width = 2, .height = 2, .defaultPalette = 0, .shape = 0, .size = 1},

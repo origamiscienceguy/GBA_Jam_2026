@@ -37,8 +37,8 @@ void videoInit(){
 		spriteBuffer[i].attr0 = ATTR0_HIDE;
 	}
 	//add all bg graphics to vram
-	for(u32 i = 0; i < 30; i++){
-		memcpy32(&(tile_mem[0][4 * (i + 2)]), graphicsList[i].data, graphicsList[i].numWords);
+	for(u32 i = 0; i < 31; i++){
+		memcpy32(&(tile_mem[0][4 * (i + 1)]), graphicsList[i].data, graphicsList[i].numWords);
 	}
 	//clear all animations
 	for(u32 i = 0; i < 16; i++){
@@ -51,8 +51,11 @@ void videoInit(){
 			se_mem[28][i * 32 + j * 2] = (u16)((graphicsList[GFX_WALL_BACKGROUND_MAP].data[i * 15 + j] & 0xffff) + 4224);
 			se_mem[28][i * 32 + j * 2 + 1] = (u16)(((graphicsList[GFX_WALL_BACKGROUND_MAP].data[i * 15 + j] & 0xffff0000) >> 16) + 4224);
 		}
+		se_mem[28][i * 32 + 30] = SE_ID(4) | SE_PALBANK(0);
+		se_mem[28][i * 32 + 31] = SE_ID(4) | SE_PALBANK(0);
 		
 	}
+	//set the vcount interrupt
 	playAnimation(ANIM_SLASH, 0, 60);
 }
 
@@ -62,6 +65,8 @@ void vblankUpdate(){
 	
 	//update OAM
 	memcpy32(oam_mem, spriteBuffer, 256);
+	
+	REG_BG0HOFS = 0;
 	
 	//update segments of VRAM
 	for(u32 i = 0; i < 16; i++){

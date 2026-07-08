@@ -25,6 +25,7 @@ enum AnimManagerMode{
 };
 
 enum GraphicsEnum{
+	GFX_EMPTY,
 	GFX_BLACK_MAGIC_1,
 	GFX_BLACK_MAGIC_2,
 	GFX_BLOOD_BLADE_1,

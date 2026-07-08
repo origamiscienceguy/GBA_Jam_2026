@@ -3,6 +3,7 @@
 Inputs inputs = {.lastFrame = 0, .currentFrame = 0, .pressed = 0, .held = 0, .released = 0,};
 enum FrameState frameState = WORKING;
 u32 globalTimer = 0;
+GameState gameState;
 
 
 int main(){
@@ -13,6 +14,8 @@ int main(){
 		globalTimer++;
 		vblankUpdate();
 		animationManager();
+		//process the currently-running script
+		scriptList[gameState.currentScript].scriptRun();
 		
 		//debug();
 		frameState = WAITING_FOR_VBLANK;
@@ -28,6 +31,7 @@ void initialize(){
 	audioInit();
 	videoInit();
 	textInit();
+	scriptList[SCR_BATTLE].scriptInit();
 }
 
 void interruptInit(){
@@ -37,7 +41,7 @@ void interruptInit(){
 	//set the interrupt service routine functions and priority order (first is highest priority)
 	u16 priorityList[14] = {IRQ_HBLANK, IRQ_VCOUNT, IRQ_VBLANK, IRQ_TIMER2, IRQ_TIMER1, IRQ_SERIAL,
 						   IRQ_TIMER0, IRQ_TIMER3, IRQ_DMA0, IRQ_DMA1, IRQ_DMA2, IRQ_KEYPAD, IRQ_DMA3, IRQ_GAMEPAK};
-	void (*isrFunctionPointers[14])() = {0, 0, vblankISR, 0, timer1ISR, 0, 0, 0, 0, 0, 0, 0, 0, cartridgeISR};
+	void (*isrFunctionPointers[14])() = {0, vcountISR, vblankISR, 0, timer1ISR, 0, 0, 0, 0, 0, 0, 0, 0, cartridgeISR};
 	
 	//apply the chosen priorities
 	setInterruptHandlers(priorityList, (u32 *)isrFunctionPointers);
@@ -49,7 +53,7 @@ void interruptInit(){
 	
 	//enable Vblank interrupts
 	REG_DISPCNT = 0;
-	REG_DISPSTAT = DSTAT_VBL_IRQ; 
+	REG_DISPSTAT = DSTAT_VBL_IRQ | DSTAT_VCT_IRQ | DSTAT_VCT(135); 
 	REG_WAITCNT = WS_SRAM_8 | WS_ROM0_N3 | WS_ROM0_S1;
 }
 
