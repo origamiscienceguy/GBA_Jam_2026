@@ -31,6 +31,8 @@ enum Actions{
 
 enum Scripts{
 	SCR_BATTLE,
+	SCR_BATTLE_START,
+	SCR_SLASH,
 	SCR_MAIN_MENU,
 	SCR_SETTINGS,
 };
@@ -50,6 +52,15 @@ typedef struct GameState{
 	enum Actions actionPalette[10];
 	u8 actionPosition[14];
 	u8 selectedAction;
+	u8 savedSelectedAction;
+	u8 numAvailableActions;
+	u8 templarAnimationID;
+	u8 witchAnimationID;
+	u8 scriptCounter;
+	u8 witchHealth;
+	u8 witchMaxHealth;
+	u8 templarHealth;
+	u8 templarMaxHealth;
 }GameState;
 
 typedef struct Script{
@@ -57,10 +68,20 @@ typedef struct Script{
 	void (*scriptRun)(void);
 }Script;
 
+typedef const struct Action{
+	const enum GraphicsEnum unselectedGraphic;
+	const enum GraphicsEnum selectedGraphic;
+	const enum GraphicsEnum cooldownGraphic;
+	const Script *selectedScript;
+	u8 cooldown;
+}Action;
+
 //external data
 extern enum FrameState frameState;
 extern GameState gameState;
 extern Script scriptList[];
+extern Inputs inputs;
+extern Action actions[];
 
 //function declarations
 void initialize();

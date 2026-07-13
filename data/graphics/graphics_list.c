@@ -34,6 +34,7 @@ extern cu32 Twin_Slash_2Tiles[];
 extern cu32 TemplarTiles[];
 extern cu32 Wall_BackgroundTiles[];
 extern cu32 Wall_BackgroundMap[];
+extern cu32 WitchTiles[];
 //extern cu32 [];
 
 Graphic graphicsList[]={
@@ -71,5 +72,6 @@ Graphic graphicsList[]={
 {.data = TemplarTiles, .numWords = 6528, .width = 8, .height = 4, .defaultPalette = 0, .shape = 1, .size = 3},
 {.data = Wall_BackgroundTiles, .numWords = 280, .width = 30, .height = 20, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Wall_BackgroundMap, .numWords = 300, .width = 30, .height = 20, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = WitchTiles, .numWords = 15360, .width = 8, .height = 8, .defaultPalette = 0, .shape = 0, .size = 3},
 };
 //{.data = , .size = 32, .width = 2, .height = 2, .defaultPalette = 1},

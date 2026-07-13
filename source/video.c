@@ -4,6 +4,8 @@ u16 paletteBuffer[2][256];
 VramSegment vramBuffers[16];
 u8 vramSegmentsUsed = 0;
 AnimationEntry activeAnimations[16];
+u16 ActionPalettetilemapBuffer[64];
+u16 animationStartingTile = 55;
 
 
 void setPalette(Palette palette){
@@ -55,8 +57,6 @@ void videoInit(){
 		se_mem[28][i * 32 + 31] = SE_ID(4) | SE_PALBANK(0);
 		
 	}
-	//set the vcount interrupt
-	playAnimation(ANIM_SLASH, 0, 60);
 }
 
 void vblankUpdate(){
@@ -99,11 +99,21 @@ u8 playAnimation(u32 animationID, u32 xPos, u32 yPos){
 			activeAnimations[i].startYPos = yPos;
 			activeAnimations[i].mode = ANIMMANAGER_ACTIVE;
 			activeAnimations[i].oamEntry = i;
-			activeAnimations[i].startingTile = 55;
+			activeAnimations[i].startingTile = animationStartingTile;
+			animationStartingTile += animationList[animationID]->graphics->width * animationList[animationID]->graphics->height;
 			return i;
 		}
 	}
 	return 0xff;
+}
+
+void changeAnimation(u8 slot, u32 animationID, u32 xPos, u32 yPos){
+	activeAnimations[slot].animation = animationList[animationID];
+	activeAnimations[slot].counter = 0;
+	activeAnimations[slot].posCounter = 0;
+	activeAnimations[slot].gfxCounter = 0;
+	activeAnimations[slot].startXPos = xPos;
+	activeAnimations[slot].startYPos = yPos;
 }
 
 void endAnimation(u8 slot){
@@ -160,3 +170,4 @@ void animationManager(){
 		activeAnimations[i].counter++;
 	}
 }
+

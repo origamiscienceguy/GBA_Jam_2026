@@ -59,10 +59,37 @@ enum GraphicsEnum{
 	GFX_TEMPLAR,
 	GFX_WALL_BACKGROUND,
 	GFX_WALL_BACKGROUND_MAP,
+	GFX_WITCH
 };
 
 enum AnimationEnum{
-	ANIM_SLASH,
+	ANIM_TEMPLAR_IDLE,
+	ANIM_TEMPLAR_HURT,
+	ANIM_TEMPLAR_DEAD,
+	ANIM_TEMPLAR_TWIN_SLASH,
+	ANIM_TEMPLAR_TRIPLE_SLASH,
+	ANIM_TEMPLAR_SUMMON_BLADE,
+	ANIM_TEMPLAR_SLASH,
+	ANIM_TEMPLAR_REFRESH,
+	ANIM_TEMPLAR_PARRY,
+	ANIM_TEMPLAR_MEDITATE,
+	ANIM_TEMPLAR_MEAT,
+	ANIM_TEMPLAR_ICE_CREAM,
+	ANIM_TEMPLAR_GUARD,
+	ANIM_TEMPLAR_FOCUS,
+	ANIM_TEMPLAR_CRANBERRY,
+	ANIM_TEMPLAR_BLOOD_BLADE,
+	ANIM_TEMPLAR_BLACK_MAGIC,
+	ANIM_WITCH_IDLE,
+	ANIM_WITCH_HURT,
+	ANIM_WITCH_DEAD,
+	ANIM_WITCH_MISSILE,
+	ANIM_WITCH_HEX,
+	ANIM_WITCH_DRAIN,
+	ANIM_WITCH_CHARGE,
+	ANIM_WITCH_BLOOD_MISSILE,
+	ANIM_WITCH_BLAST,
+	
 };
 
 //structs
@@ -119,6 +146,7 @@ extern const unsigned short PalettesBitmap[];
 extern OBJ_ATTR spriteBuffer[];
 extern Graphic graphicsList[];
 extern Animation *animationList[];
+extern u16 ActionPalettetilemapBuffer[];
 
 //function declarations
 void setPalette(Palette);
@@ -126,4 +154,7 @@ void videoInit();
 void vblankUpdate();
 void vramAddUpdate(void *, void *, u32);
 u8 playAnimation(u32, u32, u32);
+void endAnimation(u8);
 void animationManager();
+extern void drawActionPalette();
+void changeAnimation(u8, u32, u32, u32);

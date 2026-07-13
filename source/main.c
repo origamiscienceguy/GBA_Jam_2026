@@ -31,7 +31,7 @@ void initialize(){
 	audioInit();
 	videoInit();
 	textInit();
-	scriptList[SCR_BATTLE].scriptInit();
+	scriptList[SCR_BATTLE_START].scriptInit();
 }
 
 void interruptInit(){
@@ -181,7 +181,7 @@ void debug(){
 	//add animated sprites of the templar and the witch
 	static u32 playing = 0;
 	if(playing == 0){
-		playAnimation(ANIM_SLASH, 0, 80);
+		playAnimation(ANIM_TEMPLAR_SLASH, 0, 80);
 		playing = 1;
 	}
 }
