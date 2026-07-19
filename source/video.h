@@ -1,5 +1,23 @@
 #include "tonc.h"
 
+//defines
+#define TEMPLAR_X 24
+#define TEMPLAR_Y 60
+#define WITCH_X 168
+#define WITCH_Y 28
+#define TEMPLAR_HEALTH_BACK_X 21
+#define TEMPLAR_HEALTH_BACK_Y 92
+#define WITCH_HEALTH_BACK_X 187
+#define WITCH_HEALTH_BACK_Y 92
+#define TEMPLAR_HEALTH_FRONT_X 29
+#define TEMPLAR_HEALTH_FRONT_Y 92
+#define WITCH_HEALTH_FRONT_X 195
+#define WITCH_HEALTH_FRONT_Y 92
+#define TEMPLAR_HEALTH_TEXT_X 27
+#define TEMPLAR_HEALTH_TEXT_Y 92
+#define WITCH_HEALTH_TEXT_X 214
+#define WITCH_HEALTH_TEXT_Y 92
+
 //enum
 enum Colors{
 	BLACK,
@@ -59,7 +77,9 @@ enum GraphicsEnum{
 	GFX_TEMPLAR,
 	GFX_WALL_BACKGROUND,
 	GFX_WALL_BACKGROUND_MAP,
-	GFX_WITCH
+	GFX_WITCH,
+	GFX_HEALTHBAR_BACKING,
+	GFX_HEALTHBAR_FRONT,
 };
 
 enum AnimationEnum{
@@ -89,7 +109,24 @@ enum AnimationEnum{
 	ANIM_WITCH_CHARGE,
 	ANIM_WITCH_BLOOD_MISSILE,
 	ANIM_WITCH_BLAST,
-	
+	ANIM_HEALTH_BAR_BACK,
+	ANIM_HEALTH_BAR_16,
+	ANIM_HEALTH_BAR_15,
+	ANIM_HEALTH_BAR_14,
+	ANIM_HEALTH_BAR_13,
+	ANIM_HEALTH_BAR_12,
+	ANIM_HEALTH_BAR_11,
+	ANIM_HEALTH_BAR_10,
+	ANIM_HEALTH_BAR_9,
+	ANIM_HEALTH_BAR_8,
+	ANIM_HEALTH_BAR_7,
+	ANIM_HEALTH_BAR_6,
+	ANIM_HEALTH_BAR_5,
+	ANIM_HEALTH_BAR_4,
+	ANIM_HEALTH_BAR_3,
+	ANIM_HEALTH_BAR_2,
+	ANIM_HEALTH_BAR_1,
+	ANIM_HEALTH_BAR_0,
 };
 
 //structs
@@ -158,3 +195,7 @@ void endAnimation(u8);
 void animationManager();
 extern void drawActionPalette();
 void changeAnimation(u8, u32, u32, u32);
+void templarHealthUpdate(u32, u32, u8);
+void witchHealthUpdate(u32, u32, u8);
+void templarHealthInterpolate(u32, u32, u32, u8);
+void witchHealthInterpolate(u32, u32, u32, u8);

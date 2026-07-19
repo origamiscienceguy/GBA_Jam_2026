@@ -4,6 +4,7 @@
 #include "text.h"
 
 
+
 //enums
 enum FrameState{
 	WORKING,
@@ -56,11 +57,19 @@ typedef struct GameState{
 	u8 numAvailableActions;
 	u8 templarAnimationID;
 	u8 witchAnimationID;
+	u8 templarHealthBackID;
+	u8 witchHealthBackID;
+	u8 templarHealthFrontID;
+	u8 witchHealthFrontID;
 	u8 scriptCounter;
 	u8 witchHealth;
 	u8 witchMaxHealth;
 	u8 templarHealth;
 	u8 templarMaxHealth;
+	u8 templarDamage;
+	u8 previousHealth;
+	u8 templarHealthMessageID;
+	u8 witchHealthMessageID;
 }GameState;
 
 typedef struct Script{

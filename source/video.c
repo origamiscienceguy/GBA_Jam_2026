@@ -151,7 +151,7 @@ void animationManager(){
 		//queue the oam update to take place next vblank
 		spriteBuffer[activeAnimations[i].oamEntry].attr0 = ATTR0_REG | ATTR0_4BPP | ATTR0_SHAPE(activeAnimations[i].animation->graphics->shape) | ATTR0_Y(activeAnimations[i].yPos);
 		spriteBuffer[activeAnimations[i].oamEntry].attr1 = ATTR1_SIZE(activeAnimations[i].animation->graphics->size) | ATTR1_X(activeAnimations[i].xPos);
-		spriteBuffer[activeAnimations[i].oamEntry].attr2 = ATTR2_ID(activeAnimations[i].startingTile) | ATTR2_PRIO(0) | ATTR2_PALBANK(1);
+		spriteBuffer[activeAnimations[i].oamEntry].attr2 = ATTR2_ID(activeAnimations[i].startingTile) | ATTR2_PRIO(0) | ATTR2_PALBANK(activeAnimations[i].animation->graphics->defaultPalette);
 		
 		
 		//chek if the end of the animation has been reached
