@@ -44,6 +44,8 @@ extern Animation healthbar3;
 extern Animation healthbar2;
 extern Animation healthbar1;
 extern Animation healthbar0;
+extern Animation playerTurn;
+extern Animation witchTurn;
 
 Animation *animationList[] = {
 	&templarIdle,
@@ -90,4 +92,6 @@ Animation *animationList[] = {
 	&healthbar2,
 	&healthbar1,
 	&healthbar0,
+	&playerTurn,
+	&witchTurn,
 };

@@ -37,6 +37,10 @@ extern cu32 Wall_BackgroundMap[];
 extern cu32 WitchTiles[];
 extern cu32 Healthbar_BackingTiles[];
 extern cu32 Healthbar_FrontTiles[];
+extern cu32 IntentsTiles[];
+extern cu32 IntentsMap[];
+extern cu32 Player_TurnTiles[];
+extern cu32 Witch_TurnTiles[];
 //extern cu32 [];
 
 Graphic graphicsList[]={
@@ -77,5 +81,8 @@ Graphic graphicsList[]={
 {.data = WitchTiles, .numWords = 15360, .width = 8, .height = 8, .defaultPalette = 1, .shape = 0, .size = 3},
 {.data = Healthbar_BackingTiles, .numWords = 32, .width = 4, .height = 1, .defaultPalette = 1, .shape = 1, .size = 1},
 {.data = Healthbar_FrontTiles, .numWords = 272, .width = 2, .height = 1, .defaultPalette = 1, .shape = 1, .size = 0},
+{.data = IntentsTiles, .numWords = 120, .width = 2, .height = 2, .defaultPalette = 0, .shape = 0, .size = 1},
+{.data = Player_TurnTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 1, .shape = 1, .size = 3},
+{.data = Witch_TurnTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 1, .shape = 1, .size = 3},
 };
 //{.data = , .size = 32, .width = 2, .height = 2, .defaultPalette = 1},

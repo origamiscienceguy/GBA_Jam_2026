@@ -1,4 +1,5 @@
 #include "main.h"
+#include "sprite.h"
 
 const u16 maxHealthInverse[99] = {
 0x8000, 0x4000, 0x2AAB, 0x2000, 0x199A, 0x1556, 0x124A, 0x1000, 0xE39, 
@@ -103,4 +104,88 @@ u8 generateHealthMessage(enum TextChar *healthMessage, u32 currentHealth, u32 ma
 		textPos += 2;
 	}
 	return textPos;
+}
+
+void templarDamageScript(u32 currentFrame){
+	switch(currentFrame){
+		case 0:
+		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
+		break;
+		
+		case 4:
+		templarHealthUpdate(gameState.previousHealth, gameState.templarMaxHealth, 1);
+		break;
+		
+		case 8:
+		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 1);
+		break;
+		
+		case 12:
+		templarHealthUpdate(gameState.previousHealth, gameState.templarMaxHealth, 1);
+		break;
+	}
+	
+	if((currentFrame >= 16) && ((currentFrame - 33) < 16)){
+		templarHealthInterpolate(gameState.templarHealth, gameState.previousHealth, gameState.templarMaxHealth, (gameState.scriptCounter - 16));
+	}
+}
+
+u8 witchDamageScript(s32 currentFrame){
+	switch(currentFrame){
+		case 0:
+		witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
+		break;
+		
+		case 4:
+		witchHealthUpdate(gameState.previousHealth, gameState.witchMaxHealth, 1);
+		break;
+		
+		case 8:
+		witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 1);
+		break;
+		
+		case 12:
+		witchHealthUpdate(gameState.previousHealth, gameState.witchMaxHealth, 1);
+		break;
+	}
+	
+	//change behavior if the witch is brought to zero health
+	if((currentFrame >= 16) && ((currentFrame - 33) < 16)){
+		witchHealthInterpolate(gameState.witchHealth, gameState.previousHealth, gameState.witchMaxHealth, (currentFrame - 16));
+	}
+	
+	if(gameState.witchHealth == 0){
+		switch (currentFrame){
+			case 0:
+			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_DEAD, WITCH_X, WITCH_Y);
+			break;
+			
+			case 56:
+			witchHealthUpdate(gameState.witchMaxHealth, gameState.witchMaxHealth, 0);
+			break;
+			
+			case 120:
+			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_IDLE, WITCH_X, WITCH_Y);
+			gameState.witchHealth = gameState.witchMaxHealth;
+			return 1;
+			break;
+		}
+	}
+	else{
+		switch (currentFrame){
+			case 0:
+			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_HURT, WITCH_X, WITCH_Y);
+			break;
+			
+			case 26:
+			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_IDLE, WITCH_X, WITCH_Y);
+			break;
+			
+			case 49:
+			return 1;
+			break;
+			
+		}
+	}
+	return 0;
 }

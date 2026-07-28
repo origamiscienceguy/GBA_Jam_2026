@@ -57,6 +57,12 @@ void videoInit(){
 		se_mem[28][i * 32 + 31] = SE_ID(4) | SE_PALBANK(0);
 		
 	}
+	memcpy32(&(tile_mem[0][163]), graphicsList[GFX_INTENTS].data, graphicsList[GFX_INTENTS].numWords);
+	se_mem[28][23 + 5 * 32] = 1 + 0x10A3;
+	se_mem[28][24 + 5 * 32] = 2 + 0x10A3;
+	se_mem[28][23 + 6 * 32] = 1 + 0x18A3;
+	se_mem[28][24 + 6 * 32] = 2 + 0x18A3;
+	
 }
 
 void vblankUpdate(){
@@ -133,8 +139,8 @@ void animationManager(){
 		//check if the position has reached a keyframe
 		if(activeAnimations[i].animation->posFrame[activeAnimations[i].posCounter] == activeAnimations[i].counter){
 			//if so, update position
-			activeAnimations[i].xPos = activeAnimations[i].startXPos + activeAnimations[i].animation->xPos[activeAnimations[i].posCounter];
-			activeAnimations[i].yPos = activeAnimations[i].startYPos + activeAnimations[i].animation->yPos[activeAnimations[i].posCounter];
+			activeAnimations[i].xPos = (activeAnimations[i].startXPos + activeAnimations[i].animation->xPos[activeAnimations[i].posCounter]) & 0x1ff;
+			activeAnimations[i].yPos = (activeAnimations[i].startYPos + activeAnimations[i].animation->yPos[activeAnimations[i].posCounter]) & 0xff;
 			activeAnimations[i].posCounter++;
 		}
 		
@@ -163,7 +169,7 @@ void animationManager(){
 				continue;
 			}
 			else{
-				endAnimation(i);
+				activeAnimations[i].counter = activeAnimations[i].animation->numFrames;
 				return;
 			}
 		}

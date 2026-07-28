@@ -30,6 +30,12 @@ enum Actions{
 	ACT_REFRESH,
 };
 
+enum Intents{
+	INTENT_ATTACK,
+	INTENT_DEBUFF,
+	INTENT_CHARGE,
+};
+
 enum Scripts{
 	SCR_BATTLE,
 	SCR_BATTLE_START,
@@ -67,9 +73,17 @@ typedef struct GameState{
 	u8 templarHealth;
 	u8 templarMaxHealth;
 	u8 templarDamage;
+	u8 witchDamage;
 	u8 previousHealth;
 	u8 templarHealthMessageID;
 	u8 witchHealthMessageID;
+	u8 templarLevelMessageID;
+	u8 witchLevelMessageID;
+	u8 templarLevel;
+	u8 witchLevel;
+	u8 intentMessageID;
+	u8 templarTurnID;
+	u8 witchTurnID;
 }GameState;
 
 typedef struct Script{

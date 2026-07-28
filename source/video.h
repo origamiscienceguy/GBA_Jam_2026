@@ -1,23 +1,5 @@
 #include "tonc.h"
 
-//defines
-#define TEMPLAR_X 24
-#define TEMPLAR_Y 60
-#define WITCH_X 168
-#define WITCH_Y 28
-#define TEMPLAR_HEALTH_BACK_X 21
-#define TEMPLAR_HEALTH_BACK_Y 92
-#define WITCH_HEALTH_BACK_X 187
-#define WITCH_HEALTH_BACK_Y 92
-#define TEMPLAR_HEALTH_FRONT_X 29
-#define TEMPLAR_HEALTH_FRONT_Y 92
-#define WITCH_HEALTH_FRONT_X 195
-#define WITCH_HEALTH_FRONT_Y 92
-#define TEMPLAR_HEALTH_TEXT_X 27
-#define TEMPLAR_HEALTH_TEXT_Y 92
-#define WITCH_HEALTH_TEXT_X 214
-#define WITCH_HEALTH_TEXT_Y 92
-
 //enum
 enum Colors{
 	BLACK,
@@ -80,6 +62,9 @@ enum GraphicsEnum{
 	GFX_WITCH,
 	GFX_HEALTHBAR_BACKING,
 	GFX_HEALTHBAR_FRONT,
+	GFX_INTENTS,
+	GFX_PLAYER_TURN,
+	GFX_WITCH_TURN,
 };
 
 enum AnimationEnum{
@@ -127,6 +112,8 @@ enum AnimationEnum{
 	ANIM_HEALTH_BAR_2,
 	ANIM_HEALTH_BAR_1,
 	ANIM_HEALTH_BAR_0,
+	ANIM_PLAYER_TURN,
+	ANIM_WITCH_TURN,
 };
 
 //structs
@@ -199,3 +186,8 @@ void templarHealthUpdate(u32, u32, u8);
 void witchHealthUpdate(u32, u32, u8);
 void templarHealthInterpolate(u32, u32, u32, u8);
 void witchHealthInterpolate(u32, u32, u32, u8);
+void templarDamageScript(u32);
+u8 witchDamageScript(s32);
+void templarLevelUpdate(u8);
+void witchLevelUpdate(u8);
+void intentUpdate(u8);

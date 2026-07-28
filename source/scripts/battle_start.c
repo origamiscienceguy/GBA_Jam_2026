@@ -1,4 +1,5 @@
 #include "main.h"
+#include "sprite.h"
 
 void battleStartInit(){
 	//setup the starting action palette
@@ -18,6 +19,8 @@ void battleStartInit(){
 	gameState.witchHealthFrontID = playAnimation(ANIM_HEALTH_BAR_16, WITCH_HEALTH_FRONT_X, WITCH_HEALTH_FRONT_Y);
 	gameState.templarHealthBackID = playAnimation(ANIM_HEALTH_BAR_BACK, TEMPLAR_HEALTH_BACK_X, TEMPLAR_HEALTH_BACK_Y);
 	gameState.witchHealthBackID = playAnimation(ANIM_HEALTH_BAR_BACK, WITCH_HEALTH_BACK_X, WITCH_HEALTH_BACK_Y);
+	gameState.templarTurnID = playAnimation(ANIM_PLAYER_TURN, TURN_X, TURN_Y);
+	gameState.witchTurnID = playAnimation(ANIM_WITCH_TURN, TURN_X, 160);
 
 	playSong(MAIN_LOOP);
 	
@@ -31,9 +34,18 @@ void battleStartInit(){
 	gameState.witchHealthMessageID = 0xff;
 	gameState.templarHealthMessageID = 0xff;
 	gameState.templarDamage = 3;
+	gameState.witchDamage = 11;
+	gameState.templarLevel = 1;
+	gameState.witchLevel = 1;
+	gameState.templarLevelMessageID = 0xff;
+	gameState.witchLevelMessageID = 0xff;
+	gameState.intentMessageID = 0xff;
 	
 	witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
+	witchLevelUpdate(gameState.witchLevel);
 	templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
+	templarLevelUpdate(gameState.templarLevel);
+	intentUpdate(INTENT_ATTACK);
 }
 	
 void battleStartRun(){};
