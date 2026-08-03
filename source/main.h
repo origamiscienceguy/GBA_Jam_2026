@@ -36,10 +36,21 @@ enum Intents{
 	INTENT_CHARGE,
 };
 
+enum Phase{
+	PHASE_BASIC,
+	PHASE_VAMPIRE,
+	PHASE_EXPLOSIVE,
+	PHASE_BLOOD,
+	PHASE_CURSE,
+};
+
 enum Scripts{
-	SCR_BATTLE,
+	SCR_PLAYER_TURN,
+	SCR_WITCH_TURN,
 	SCR_BATTLE_START,
+	SCR_BATTLE_MANAGER,
 	SCR_SLASH,
+	SCR_MISSILE,
 	SCR_MAIN_MENU,
 	SCR_SETTINGS,
 };
@@ -57,6 +68,9 @@ typedef struct Inputs{
 typedef struct GameState{
 	enum Scripts currentScript;
 	enum Actions actionPalette[10];
+	enum Phase witchPhase;
+	u8 witchPhaseParity;
+	u8 witchPhaseLevel;
 	u8 actionPosition[14];
 	u8 selectedAction;
 	u8 savedSelectedAction;
@@ -84,6 +98,7 @@ typedef struct GameState{
 	u8 intentMessageID;
 	u8 templarTurnID;
 	u8 witchTurnID;
+	u8 currentTurn;
 }GameState;
 
 typedef struct Script{

@@ -19,11 +19,11 @@ Action actions[15] = {
 	{.unselectedGraphic = GFX_REFRESH_1, .selectedGraphic = GFX_REFRESH_2, .cooldownGraphic = GFX_BLANK, .selectedScript = 0},
 };
 
-void battleInit(){
-	gameState.currentScript = SCR_BATTLE;
+void playerTurnInit(){
+	gameState.currentScript = SCR_PLAYER_TURN;
 }
 
-void battleRun(){
+void playerTurnRun(){
 	//check inputs, move selected action accordingly
 	if(inputs.pressed & KEY_A){
 		actions[gameState.actionPalette[gameState.selectedAction]].selectedScript->scriptInit();

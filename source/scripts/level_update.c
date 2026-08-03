@@ -1,7 +1,13 @@
 #include "main.h"
 #include "sprite.h"
 
-void witchLevelUpdate(u8 newLevel){
+void witchLevelUpdate(u8 newLevel, u8 hide){
+	if(hide){
+		closeText(gameState.witchLevelMessageID);
+		gameState.witchLevelMessageID = 0xFF;
+		return;
+	}
+	
 	enum TextChar witchLevelMessage[6] = {L, V, L, SPACE, SPACE, SPACE};
 	if(newLevel < 10){
 		witchLevelMessage[4] = ZERO + newLevel;

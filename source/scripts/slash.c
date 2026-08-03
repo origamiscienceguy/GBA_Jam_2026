@@ -26,6 +26,10 @@ void slashRun(){
 		gameState.selectedAction = 0xFF;
 		break;
 		
+		case (HITFRAME - 4):
+		startFullScreenAnim(FSANIM_SLASH);
+		break;
+		
 		case HITFRAME:
 		playSfx(SLASH);
 		gameState.previousHealth = gameState.witchHealth;
@@ -49,7 +53,7 @@ void slashRun(){
 	
 	if(done){
 		gameState.selectedAction = gameState.savedSelectedAction;
-		scriptList[SCR_BATTLE].scriptInit();
+		scriptList[SCR_BATTLE_MANAGER].scriptInit();
 	}
 	
 	drawActionPalette();

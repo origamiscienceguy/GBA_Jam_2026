@@ -19,33 +19,39 @@ void battleStartInit(){
 	gameState.witchHealthFrontID = playAnimation(ANIM_HEALTH_BAR_16, WITCH_HEALTH_FRONT_X, WITCH_HEALTH_FRONT_Y);
 	gameState.templarHealthBackID = playAnimation(ANIM_HEALTH_BAR_BACK, TEMPLAR_HEALTH_BACK_X, TEMPLAR_HEALTH_BACK_Y);
 	gameState.witchHealthBackID = playAnimation(ANIM_HEALTH_BAR_BACK, WITCH_HEALTH_BACK_X, WITCH_HEALTH_BACK_Y);
-	gameState.templarTurnID = playAnimation(ANIM_PLAYER_TURN, TURN_X, TURN_Y);
+	gameState.templarTurnID = playAnimation(ANIM_PLAYER_TURN, TURN_X, 160);
 	gameState.witchTurnID = playAnimation(ANIM_WITCH_TURN, TURN_X, 160);
+	startFullScreenAnim(FSANIM_NONE);
 
 	playSong(MAIN_LOOP);
 	
 	gameState.selectedAction = 0;
 	gameState.numAvailableActions = 8;
-	gameState.witchHealth = 11;
-	gameState.witchMaxHealth = 11;
+	gameState.witchHealth = 4;
+	gameState.witchMaxHealth = 4;
 	gameState.templarHealth = 8;
 	gameState.templarMaxHealth = 8;
-	gameState.currentScript = SCR_BATTLE;
 	gameState.witchHealthMessageID = 0xff;
 	gameState.templarHealthMessageID = 0xff;
 	gameState.templarDamage = 3;
-	gameState.witchDamage = 11;
+	gameState.witchDamage = 1;
 	gameState.templarLevel = 1;
 	gameState.witchLevel = 1;
 	gameState.templarLevelMessageID = 0xff;
 	gameState.witchLevelMessageID = 0xff;
 	gameState.intentMessageID = 0xff;
+	gameState.currentTurn = 1;
+	gameState.witchPhase = PHASE_BASIC;
+	gameState.witchPhaseParity = 0;
+	gameState.witchPhaseLevel = 0;
 	
 	witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
-	witchLevelUpdate(gameState.witchLevel);
+	witchLevelUpdate(gameState.witchLevel, 0);
 	templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
 	templarLevelUpdate(gameState.templarLevel);
 	intentUpdate(INTENT_ATTACK);
+	
+	scriptList[SCR_BATTLE_MANAGER].scriptInit();
 }
 	
 void battleStartRun(){};

@@ -169,6 +169,11 @@ u8 witchDamageScript(s32 currentFrame){
 			gameState.witchHealth = gameState.witchMaxHealth;
 			return 1;
 			break;
+			
+		}
+		//run level up animations and logic
+		if(currentFrame >= 49){
+			witchLevelUp(currentFrame - 49);
 		}
 	}
 	else{

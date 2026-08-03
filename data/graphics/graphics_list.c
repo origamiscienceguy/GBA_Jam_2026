@@ -41,6 +41,14 @@ extern cu32 IntentsTiles[];
 extern cu32 IntentsMap[];
 extern cu32 Player_TurnTiles[];
 extern cu32 Witch_TurnTiles[];
+extern cu32 black_magic_animTiles[];
+extern cu32 black_magic_animMetaTiles[];
+extern cu32 slash_animationTiles[];
+extern cu32 slash_animationMetaTiles[];
+//extern cu32 twin_slash_animationTiles[];
+//extern cu32 twin_slash_animationMetaTiles[];
+//extern cu32 triple_slash_animationTiles[];
+//extern cu32 triple_slash_animationMetaTiles[];
 //extern cu32 [];
 
 Graphic graphicsList[]={
@@ -84,5 +92,13 @@ Graphic graphicsList[]={
 {.data = IntentsTiles, .numWords = 120, .width = 2, .height = 2, .defaultPalette = 0, .shape = 0, .size = 1},
 {.data = Player_TurnTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 1, .shape = 1, .size = 3},
 {.data = Witch_TurnTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 1, .shape = 1, .size = 3},
+{.data = black_magic_animTiles, .numWords = 728, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = black_magic_animMetaTiles, .numWords = 7200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = slash_animationMetaTiles, .numWords = 1200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+//{.data = twin_slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+//{.data = twin_slash_animationMetaTiles, .numWords = 2100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+//{.data = triple_slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+//{.data = triple_slash_animationMetaTiles, .numWords = 2100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 };
 //{.data = , .size = 32, .width = 2, .height = 2, .defaultPalette = 1},

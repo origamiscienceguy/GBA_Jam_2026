@@ -6,6 +6,11 @@ u8 vramSegmentsUsed = 0;
 AnimationEntry activeAnimations[16];
 u16 ActionPalettetilemapBuffer[64];
 u16 animationStartingTile = 55;
+enum FullScreenAnimationEnum currentFullScreenAnimation;
+u32 fsAnimCounter = 0;
+u32 fsAnimgfxCounter = 0;
+u32 fsAnimBuffer[320];
+
 
 
 void setPalette(Palette palette){
@@ -28,7 +33,7 @@ void videoInit(){
 	setPalette(initialPalette);
 	REG_DISPCNT = DCNT_MODE0 | DCNT_OBJ_1D | DCNT_BG0 | DCNT_BG1 | DCNT_BG2 | DCNT_BG3 | DCNT_OBJ;
 	REG_BG0CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(3) | BG_CBB(0) | BG_SBB(28);
-	REG_BG1CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(2) | BG_CBB(0) | BG_SBB(29);
+	REG_BG1CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(0) | BG_CBB(0) | BG_SBB(29);
 	REG_BG2CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(1) | BG_CBB(0) | BG_SBB(30);
 	REG_BG3CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(0) | BG_CBB(0) | BG_SBB(31);
 	for(u32 i = 0; i < 16; i++){
@@ -157,7 +162,7 @@ void animationManager(){
 		//queue the oam update to take place next vblank
 		spriteBuffer[activeAnimations[i].oamEntry].attr0 = ATTR0_REG | ATTR0_4BPP | ATTR0_SHAPE(activeAnimations[i].animation->graphics->shape) | ATTR0_Y(activeAnimations[i].yPos);
 		spriteBuffer[activeAnimations[i].oamEntry].attr1 = ATTR1_SIZE(activeAnimations[i].animation->graphics->size) | ATTR1_X(activeAnimations[i].xPos);
-		spriteBuffer[activeAnimations[i].oamEntry].attr2 = ATTR2_ID(activeAnimations[i].startingTile) | ATTR2_PRIO(0) | ATTR2_PALBANK(activeAnimations[i].animation->graphics->defaultPalette);
+		spriteBuffer[activeAnimations[i].oamEntry].attr2 = ATTR2_ID(activeAnimations[i].startingTile) | ATTR2_PRIO(1) | ATTR2_PALBANK(activeAnimations[i].animation->graphics->defaultPalette);
 		
 		
 		//chek if the end of the animation has been reached
@@ -170,10 +175,58 @@ void animationManager(){
 			}
 			else{
 				activeAnimations[i].counter = activeAnimations[i].animation->numFrames;
-				return;
+				continue;
 			}
 		}
 		activeAnimations[i].counter++;
 	}
+	
+	//now manage the full screen animation (if there is one)
+	if(currentFullScreenAnimation == FSANIM_NONE){
+		return;
+	}
+	FullScreenAnimation *fsAnimation = fullScreenAnimationList[currentFullScreenAnimation];
+	
+	//check if this animation is finished
+	if(fsAnimCounter == fsAnimation->numFrames){
+		startFullScreenAnim(FSANIM_NONE);
+	}
+	
+	//check if the current counter matches a gfx counter
+	if(fsAnimCounter == fsAnimation->gfxFrame[fsAnimgfxCounter]){
+		//send over the new tilemap
+		for(u32 i = 0; i < 20; i++){
+			for(u32 j = 0; j < 15; j++){
+				u32 correction = 0x02000200;
+				if(fsAnimation->graphics->defaultPalette == 1){
+					correction = 0x12001200;
+				}
+				fsAnimBuffer[i * 16 + j] = fsAnimation->tilemap->data[300 * fsAnimgfxCounter + i * 15 + j] + correction;
+			}
+		}
+		vramAddUpdate((void *)&(se_mem[29][0]), (void *)fsAnimBuffer, 320);
+		
+		fsAnimgfxCounter++;
+	}
+	
+	fsAnimCounter++;
+	
 }
 
+void startFullScreenAnim(u8 animationID){
+	if(animationID == FSANIM_NONE){
+		currentFullScreenAnimation = FSANIM_NONE;
+		//clear this background
+		memset32(fsAnimBuffer, 0, 320);
+		vramAddUpdate((void *)&(se_mem[29][0]), (void *)fsAnimBuffer, 320);
+		return;
+	}
+	
+	//move all the graphic tiles for this fs animation into VRAM
+	memcpy32(&tile_mem[1][0], graphicsList[GFX_BLACK_MAGIC_ANIM + (animationID << 1)].data, graphicsList[GFX_BLACK_MAGIC_ANIM + (animationID << 1)].numWords);
+	currentFullScreenAnimation = animationID;
+	
+	fsAnimCounter = 0;
+	fsAnimgfxCounter = 0;
+	
+}

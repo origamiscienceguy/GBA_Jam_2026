@@ -46,6 +46,10 @@ extern Animation healthbar1;
 extern Animation healthbar0;
 extern Animation playerTurn;
 extern Animation witchTurn;
+extern FullScreenAnimation blackMagicAnim;
+extern FullScreenAnimation slashAnim;
+//extern FullScreenAnimation twinSlashAnim;
+//extern FullScreenAnimation tripleSlashAnim;
 
 Animation *animationList[] = {
 	&templarIdle,
@@ -94,4 +98,11 @@ Animation *animationList[] = {
 	&healthbar0,
 	&playerTurn,
 	&witchTurn,
+};
+
+FullScreenAnimation *fullScreenAnimationList[] = {
+	&blackMagicAnim,
+	&slashAnim,
+//	&twinSlashAnim,
+//	&tripleSlashAnim,
 };

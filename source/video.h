@@ -65,6 +65,14 @@ enum GraphicsEnum{
 	GFX_INTENTS,
 	GFX_PLAYER_TURN,
 	GFX_WITCH_TURN,
+	GFX_BLACK_MAGIC_ANIM,
+	GFX_BLACK_MAGIC_MAP,
+	GFX_SLASH_ANIM,
+	GFX_SLASH_ANIM_MAP,
+	GFX_TWIN_SLASH_ANIM,
+	GFX_TWIN_SLASH_ANIM_MAP,
+	GFX_TRIPLE_SLASH_ANIM,
+	GFX_TRIPLE_SLASH_ANIM_MAP,
 };
 
 enum AnimationEnum{
@@ -116,6 +124,14 @@ enum AnimationEnum{
 	ANIM_WITCH_TURN,
 };
 
+enum FullScreenAnimationEnum{
+	FSANIM_BLACK_MAGIC,
+	FSANIM_SLASH,
+	FSANIM_TWIN_SLASH,
+	FSANIM_TRIPLE_SLASH,
+	FSANIM_NONE,
+};
+
 //structs
 typedef struct Palette{
 	u16 color1;
@@ -151,6 +167,14 @@ typedef const struct Animation{
 	u32 endDetail;
 }Animation;
 
+typedef const struct FullScreenAnimation{
+	cu32 numFrames;
+	cu32 *gfxFrame;
+	cu32 *gfx;
+	Graphic *graphics;
+	Graphic *tilemap;
+}FullScreenAnimation;
+
 typedef struct AnimationEntry{
 	Animation *animation;
 	u32 counter;
@@ -170,6 +194,7 @@ extern const unsigned short PalettesBitmap[];
 extern OBJ_ATTR spriteBuffer[];
 extern Graphic graphicsList[];
 extern Animation *animationList[];
+extern FullScreenAnimation *fullScreenAnimationList[];
 extern u16 ActionPalettetilemapBuffer[];
 
 //function declarations
@@ -189,5 +214,8 @@ void witchHealthInterpolate(u32, u32, u32, u8);
 void templarDamageScript(u32);
 u8 witchDamageScript(s32);
 void templarLevelUpdate(u8);
-void witchLevelUpdate(u8);
+void witchLevelUpdate(u8, u8);
 void intentUpdate(u8);
+void witchLevelUp(u32);
+u8 phaseToIntent(u8, u8);
+void startFullScreenAnim(u8);
