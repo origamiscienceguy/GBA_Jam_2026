@@ -49,6 +49,8 @@ extern cu32 slash_animationMetaTiles[];
 //extern cu32 twin_slash_animationMetaTiles[];
 //extern cu32 triple_slash_animationTiles[];
 //extern cu32 triple_slash_animationMetaTiles[];
+extern cu32 item_throwTiles[];
+extern cu32 Templar_bonusesTiles[];
 //extern cu32 [];
 
 Graphic graphicsList[]={
@@ -100,5 +102,7 @@ Graphic graphicsList[]={
 //{.data = twin_slash_animationMetaTiles, .numWords = 2100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 //{.data = triple_slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 //{.data = triple_slash_animationMetaTiles, .numWords = 2100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = item_throwTiles, .numWords = 1728, .width = 2, .height = 4, .defaultPalette = 1, .shape = 2, .size = 2},
+{.data = Templar_bonusesTiles, .numWords = 4480, .width = 4, .height = 4, .defaultPalette = 1, .shape = 0, .size = 2},
 };
 //{.data = , .size = 32, .width = 2, .height = 2, .defaultPalette = 1},

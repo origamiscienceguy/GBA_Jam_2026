@@ -26,7 +26,7 @@ cu32 missileFullLength = 52548;
 extern cu8 powerUp[];
 cu32 powerUpLength = 38362;
 extern cu8 restore[];
-cu32 restoreLength = 22599;
+cu32 restoreLength = 22580;
 extern cu8 slash[];
 cu32 slashLength = 34669;
 

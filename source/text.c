@@ -39,7 +39,7 @@ u8 writeText(TextField textParams){
 		OBJ_ATTR glyph;
 		glyph.attr0 = ATTR0_REG | ATTR0_4BPP | ATTR0_SQUARE | ATTR0_Y(textParams.yPos);
 		glyph.attr1 = ATTR1_SIZE_8 | ATTR1_X(xPos);
-		glyph.attr2 = ATTR2_ID(textParams.message[i]) | ATTR2_PRIO(0) | ATTR2_PALBANK(0);
+		glyph.attr2 = ATTR2_ID(textParams.message[i]) | ATTR2_PRIO(1) | ATTR2_PALBANK(0);
 		spriteBuffer[objectID] = glyph;
 		xPos += 5;
 		objectID++;

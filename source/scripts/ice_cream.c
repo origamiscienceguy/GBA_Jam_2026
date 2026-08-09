@@ -1,0 +1,50 @@
+#include "main.h"
+#include "sprite.h"
+
+void iceCreamInit(){
+	gameState.currentScript = SCR_ICE_CREAM;
+	gameState.scriptCounter = 0;
+	gameState.savedSelectedAction = gameState.selectedAction;
+	
+}
+
+void iceCreamRun(){
+	switch (gameState.scriptCounter){
+		case 0:
+		gameState.selectedAction = 0xFF;
+		changeAnimation(gameState.templarAnimationID, ANIM_TEMPLAR_ICE_CREAM, TEMPLAR_X, TEMPLAR_Y);
+		playSfx(BUTTON_SELECT_2);
+		break;
+		
+		case 5:
+		gameState.selectedAction = gameState.savedSelectedAction;
+		break;
+		
+		case 10:
+		gameState.selectedAction = 0xFF;
+		break;
+		
+		case 30:
+		changeAnimation(gameState.itemThrowID, ANIM_ICE_CREAM_THROW, ITEM_THROW_X, ITEM_THROW_Y);
+		break;
+		
+		case 48:
+		changeAnimation(gameState.itemThrowID, ANIM_MEAT_THROW, ITEM_THROW_X, 160);
+		playSfx(RESTORE);
+		gameState.currentTurn++;
+		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
+		break;
+		
+		case 70:
+		changeAnimation(gameState.templarAnimationID, ANIM_TEMPLAR_IDLE, TEMPLAR_X, TEMPLAR_Y);
+		break;
+		
+		case 80:
+		gameState.selectedAction = gameState.savedSelectedAction;
+		scriptList[SCR_PLAYER_TURN].scriptInit();
+		break;
+	}
+	
+	drawActionPalette();
+	gameState.scriptCounter++;
+}

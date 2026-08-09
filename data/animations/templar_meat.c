@@ -7,7 +7,7 @@ u32 templarMeatGfxFrames[] = {0, 30, 32, 48, 1000};
 u32 templarMeatGfx[] = {30, 31, 32, 33};
 
 Animation templarMeat = {
-	.numFrames = 40,
+	.numFrames = 70,
 	.gfxFrame = templarMeatGfxFrames,
 	.gfx = templarMeatGfx,
 	.posFrame = templarMeatPosFrames,

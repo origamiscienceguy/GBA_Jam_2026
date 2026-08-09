@@ -51,6 +51,15 @@ enum Scripts{
 	SCR_BATTLE_MANAGER,
 	SCR_SLASH,
 	SCR_MISSILE,
+	SCR_BLACK_MAGIC,
+	SCR_MEAT,
+	SCR_CRANBERRY,
+	SCR_ICE_CREAM,
+	SCR_GUARD,
+	SCR_PARRY,
+	SCR_REFRESH,
+	SCR_FOCUS,
+	SCR_MEDITATE,
 	SCR_MAIN_MENU,
 	SCR_SETTINGS,
 };
@@ -99,6 +108,12 @@ typedef struct GameState{
 	u8 templarTurnID;
 	u8 witchTurnID;
 	u8 currentTurn;
+	u8 itemThrowID;
+	u8 criticalHit;
+	u8 templarBonusID;
+	u8 defendStatus;
+	u8 templarExp;
+	u8 templarNeededExp;
 }GameState;
 
 typedef struct Script{

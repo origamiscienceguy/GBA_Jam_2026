@@ -46,6 +46,14 @@ extern Animation healthbar1;
 extern Animation healthbar0;
 extern Animation playerTurn;
 extern Animation witchTurn;
+extern Animation meatThrow;
+extern Animation cranberryThrow;
+extern Animation iceCreamThrow;
+extern Animation focus;
+extern Animation meditate;
+extern Animation guard;
+extern Animation parry;
+extern Animation refresh;
 extern FullScreenAnimation blackMagicAnim;
 extern FullScreenAnimation slashAnim;
 //extern FullScreenAnimation twinSlashAnim;
@@ -98,6 +106,14 @@ Animation *animationList[] = {
 	&healthbar0,
 	&playerTurn,
 	&witchTurn,
+	&meatThrow,
+	&cranberryThrow,
+	&iceCreamThrow,
+	&focus,
+	&meditate,
+	&refresh,
+	&guard,
+	&parry,
 };
 
 FullScreenAnimation *fullScreenAnimationList[] = {

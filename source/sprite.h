@@ -23,3 +23,11 @@
 #define WITCH_INTENT_Y 44
 #define TURN_X 88
 #define TURN_Y 240
+#define ITEM_THROW_X 38
+#define ITEM_THROW_Y 44
+#define GUARD_X 24
+#define GUARD_Y 64
+#define FOCUS_X 24
+#define FOCUS_Y 64
+#define REFRESH_X 25
+#define REFRESH_Y 65
