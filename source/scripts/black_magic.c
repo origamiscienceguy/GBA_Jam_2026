@@ -24,7 +24,7 @@ void blackMagicRun(){
 		break;
 		
 		case 10:
-		gameState.selectedAction = 0xFF;
+		gameState.actionCooldown[gameState.savedSelectedAction] = 10;
 		break;
 		
 		case 15:

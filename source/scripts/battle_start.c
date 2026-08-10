@@ -65,6 +65,11 @@ void battleStartInit(){
 	templarLevelUpdate(gameState.templarLevel);
 	intentUpdate(INTENT_ATTACK);
 	
+	for(u32 i = 0; i < 10; i++){
+		gameState.actionCooldown[i] = 0;
+		gameState.cooldownTextID[i] = 0xff;
+	}
+	
 	scriptList[SCR_BATTLE_MANAGER].scriptInit();
 }
 	

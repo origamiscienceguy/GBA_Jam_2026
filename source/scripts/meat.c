@@ -21,7 +21,7 @@ void meatRun(){
 		break;
 		
 		case 10:
-		gameState.selectedAction = 0xFF;
+		gameState.actionCooldown[gameState.savedSelectedAction] = 5;
 		break;
 		
 		case 30:

@@ -21,7 +21,7 @@ void iceCreamRun(){
 		break;
 		
 		case 10:
-		gameState.selectedAction = 0xFF;
+		gameState.actionCooldown[gameState.savedSelectedAction] = 8;
 		break;
 		
 		case 30:

@@ -21,6 +21,7 @@ Action actions[15] = {
 
 void playerTurnInit(){
 	gameState.currentScript = SCR_PLAYER_TURN;
+	gameState.selectedAction = 0;
 }
 
 void playerTurnRun(){
@@ -29,21 +30,27 @@ void playerTurnRun(){
 		actions[gameState.actionPalette[gameState.selectedAction]].selectedScript->scriptInit();
 	}
 	else if(inputs.pressed & KEY_RIGHT){
-		if(gameState.selectedAction == gameState.numAvailableActions - 1){
-			gameState.selectedAction = 0;
+		do{
+			if(gameState.selectedAction == gameState.numAvailableActions - 1){
+				gameState.selectedAction = 0;
+			}
+			else{
+				gameState.selectedAction++;
+			}
 		}
-		else{
-			gameState.selectedAction++;
-		}
+		while(gameState.actionCooldown[gameState.selectedAction] != 0);
 		playSfx(BUTTON_SELECT_1);
 	}
 	else if(inputs.pressed & KEY_LEFT){
-		if(gameState.selectedAction == 0){
-			gameState.selectedAction = gameState.numAvailableActions - 1;
+		do{
+			if(gameState.selectedAction == 0){
+				gameState.selectedAction = gameState.numAvailableActions - 1;
+			}
+			else{
+				gameState.selectedAction--;
+			}
 		}
-		else{
-			gameState.selectedAction--;
-		}
+		while(gameState.actionCooldown[gameState.selectedAction] != 0);
 		playSfx(BUTTON_SELECT_1);
 	}
 	drawActionPalette();

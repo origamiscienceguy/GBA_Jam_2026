@@ -30,6 +30,7 @@ typedef struct TextField{
 	enum TextChar *message;
 	u8 firstSprite;
 	enum TextFieldMode mode;
+	u8 palette;
 }TextField;
 
 //external data

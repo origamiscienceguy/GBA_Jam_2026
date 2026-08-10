@@ -77,6 +77,8 @@ typedef struct Inputs{
 typedef struct GameState{
 	enum Scripts currentScript;
 	enum Actions actionPalette[10];
+	u8 actionCooldown[10];
+	u8 cooldownTextID[10];
 	enum Phase witchPhase;
 	u8 witchPhaseParity;
 	u8 witchPhaseLevel;

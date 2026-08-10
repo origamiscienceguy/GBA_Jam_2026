@@ -23,17 +23,25 @@ void refreshRun(){
 		break;
 		
 		case 10:
-		gameState.selectedAction = 0xFF;
+		gameState.actionCooldown[gameState.savedSelectedAction] = 5;
 		break;
 		
 		case 34:
-		//reduce cooldowns
+		for(u32 i = 0; i < 10; i++){
+			if(gameState.actionCooldown[i] != 0){
+				gameState.actionCooldown[i]--;
+			}
+			if(gameState.actionCooldown[i] == 0){
+				closeText(gameState.cooldownTextID[i]);
+				gameState.cooldownTextID[i] = 0xff;
+			}
+		}
 		break;
 		
 		case 84:
 		changeAnimation(gameState.templarBonusID, ANIM_GUARD, GUARD_X, 160);
 		changeAnimation(gameState.templarAnimationID, ANIM_TEMPLAR_IDLE, TEMPLAR_X, TEMPLAR_Y);
-		gameState.selectedAction = gameState.savedSelectedAction;
+		gameState.selectedAction = 0;
 		scriptList[SCR_BATTLE_MANAGER].scriptInit();
 		break;
 		

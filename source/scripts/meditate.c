@@ -23,7 +23,7 @@ void meditateRun(){
 		break;
 		
 		case 10:
-		gameState.selectedAction = 0xFF;
+		gameState.actionCooldown[gameState.savedSelectedAction] = 3;
 		break;
 		
 		case 34:

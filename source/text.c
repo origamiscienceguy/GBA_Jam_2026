@@ -1,5 +1,5 @@
 #include "text.h"
-TextField activeTextFields[16];
+TextField activeTextFields[32];
 u8 textSpritesUsed = 0;
 
 void textInit(){
@@ -31,15 +31,17 @@ u8 writeText(TextField textParams){
 	activeTextFields[index].message = textParams.message;
 	activeTextFields[index].firstSprite = 0x20 + textSpritesUsed;
 	activeTextFields[index].mode = TEXT_ACTIVE;
+	activeTextFields[index].palette = textParams.palette;
 	
 	//write the message to the screen
 	u8 xPos = textParams.xPos;
 	u8 objectID = activeTextFields[index].firstSprite;
+	u8 palette = activeTextFields[index].palette;
 	for(u32 i = 0; i < textParams.length; i++){
 		OBJ_ATTR glyph;
 		glyph.attr0 = ATTR0_REG | ATTR0_4BPP | ATTR0_SQUARE | ATTR0_Y(textParams.yPos);
 		glyph.attr1 = ATTR1_SIZE_8 | ATTR1_X(xPos);
-		glyph.attr2 = ATTR2_ID(textParams.message[i]) | ATTR2_PRIO(1) | ATTR2_PALBANK(0);
+		glyph.attr2 = ATTR2_ID(textParams.message[i]) | ATTR2_PRIO(1) | ATTR2_PALBANK(palette);
 		spriteBuffer[objectID] = glyph;
 		xPos += 5;
 		objectID++;

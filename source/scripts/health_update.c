@@ -26,7 +26,7 @@ void templarHealthUpdate(u32 currentHealth, u32 maxHealth, u8 mode){
 			closeText(gameState.templarHealthMessageID);
 		}
 		u8 charsUsed = generateHealthMessage(templarHealthMessage, currentHealth, maxHealth);
-		TextField sampleText = {.xPos = TEMPLAR_HEALTH_TEXT_X - charsUsed * 5, .yPos = TEMPLAR_HEALTH_TEXT_Y, .length = 5, .message = templarHealthMessage};
+		TextField sampleText = {.xPos = TEMPLAR_HEALTH_TEXT_X - charsUsed * 5, .yPos = TEMPLAR_HEALTH_TEXT_Y, .length = 5, .message = templarHealthMessage, .palette = 0,};
 		gameState.templarHealthMessageID = writeText(sampleText);
 		
 		changeAnimation(gameState.templarHealthFrontID, ANIM_HEALTH_BAR_0 - healthbarPos, TEMPLAR_HEALTH_FRONT_X, TEMPLAR_HEALTH_FRONT_Y);
