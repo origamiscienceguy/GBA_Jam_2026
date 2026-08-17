@@ -30,6 +30,10 @@ extern void focusInit();
 extern void focusRun();
 extern void meditateInit();
 extern void meditateRun();
+extern void bloodBladeInit();
+extern void bloodBladeRun();
+extern void summonBladeInit();
+extern void summonBladeRun();
 
 Script scriptList[] = {
 	{.scriptInit = playerTurnInit, .scriptRun = playerTurnRun,},
@@ -47,4 +51,6 @@ Script scriptList[] = {
 	{.scriptInit = refreshInit, .scriptRun = refreshRun,},
 	{.scriptInit = focusInit, .scriptRun = focusRun,},
 	{.scriptInit = meditateInit, .scriptRun = meditateRun,},
+	{.scriptInit = bloodBladeInit, .scriptRun = bloodBladeRun,},
+	{.scriptInit = summonBladeInit, .scriptRun = summonBladeRun,},
 };

@@ -58,6 +58,8 @@ extern FullScreenAnimation blackMagicAnim;
 extern FullScreenAnimation slashAnim;
 //extern FullScreenAnimation twinSlashAnim;
 //extern FullScreenAnimation tripleSlashAnim;
+extern FullScreenAnimation bloodBladeAnim;
+extern FullScreenAnimation summonBladeAnim;
 
 Animation *animationList[] = {
 	&templarIdle,
@@ -121,4 +123,6 @@ FullScreenAnimation *fullScreenAnimationList[] = {
 	&slashAnim,
 //	&twinSlashAnim,
 //	&tripleSlashAnim,
+	&bloodBladeAnim,
+	&summonBladeAnim,
 };

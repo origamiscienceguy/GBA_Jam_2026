@@ -33,7 +33,7 @@ void videoInit(){
 	setPalette(initialPalette);
 	REG_DISPCNT = DCNT_MODE0 | DCNT_OBJ_1D | DCNT_BG0 | DCNT_BG1 | DCNT_BG2 | DCNT_BG3 | DCNT_OBJ;
 	REG_BG0CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(3) | BG_CBB(0) | BG_SBB(28);
-	REG_BG1CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(0) | BG_CBB(0) | BG_SBB(29);
+	REG_BG1CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(0) | BG_CBB(1) | BG_SBB(29);
 	REG_BG2CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(1) | BG_CBB(0) | BG_SBB(30);
 	REG_BG3CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(0) | BG_CBB(0) | BG_SBB(31);
 	for(u32 i = 0; i < 16; i++){
@@ -197,11 +197,11 @@ void animationManager(){
 		//send over the new tilemap
 		for(u32 i = 0; i < 20; i++){
 			for(u32 j = 0; j < 15; j++){
-				u32 correction = 0x02000200;
+				u32 correction = 0x00000000;
 				if(fsAnimation->graphics->defaultPalette == 1){
-					correction = 0x12001200;
+					correction = 0x10001000;
 				}
-				fsAnimBuffer[i * 16 + j] = fsAnimation->tilemap->data[300 * fsAnimgfxCounter + i * 15 + j] + correction;
+				fsAnimBuffer[i * 16 + j] = fsAnimation->tilemap->data[300 * fsAnimation->gfx[fsAnimgfxCounter] + i * 15 + j] + correction;
 			}
 		}
 		vramAddUpdate((void *)&(se_mem[29][0]), (void *)fsAnimBuffer, 320);

@@ -13,10 +13,10 @@ void battleStartInit(){
 	gameState.actionPalette[1] = ACT_GUARD;
 	gameState.actionPalette[2] = ACT_FOCUS;
 	gameState.actionPalette[3] = ACT_BLACK_MAGIC;
-	gameState.actionPalette[4] = ACT_MEAT;
-	gameState.actionPalette[5] = ACT_CRANBERRY;
-	gameState.actionPalette[6] = ACT_ICE_CREAM;
-	gameState.actionPalette[7] = ACT_MEDITATE;
+	gameState.actionPalette[4] = ACT_BLOOD_BLADE;
+	gameState.actionPalette[5] = ACT_SUMMON_BLADE;
+	gameState.actionPalette[6] = ACT_TWIN_SLASH;
+	gameState.actionPalette[7] = ACT_TRIPLE_SLASH;
 	gameState.actionPalette[8] = ACT_PARRY;
 	gameState.actionPalette[9] = ACT_REFRESH;
 
