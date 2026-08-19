@@ -39,8 +39,8 @@ enum Intents{
 enum Phase{
 	PHASE_BASIC,
 	PHASE_VAMPIRE,
-	PHASE_EXPLOSIVE,
 	PHASE_BLOOD,
+	PHASE_EXPLOSIVE,
 	PHASE_CURSE,
 };
 
@@ -50,7 +50,6 @@ enum Scripts{
 	SCR_BATTLE_START,
 	SCR_BATTLE_MANAGER,
 	SCR_SLASH,
-	SCR_MISSILE,
 	SCR_BLACK_MAGIC,
 	SCR_MEAT,
 	SCR_CRANBERRY,
@@ -62,6 +61,14 @@ enum Scripts{
 	SCR_MEDITATE,
 	SCR_BLOOD_BLADE,
 	SCR_SUMMON_BLADE,
+	SCR_TWIN_SLASH,
+	SCR_TRIPLE_SLASH,
+	SCR_HEX,
+	SCR_CHARGE,
+	SCR_EXPLOSION,
+	SCR_MISSILE,
+	SCR_VAMPIRE,
+	SCR_BLOOD,
 	SCR_MAIN_MENU,
 	SCR_SETTINGS,
 };
@@ -118,6 +125,7 @@ typedef struct GameState{
 	u8 defendStatus;
 	u8 templarExp;
 	u8 templarNeededExp;
+	u8 witchAttackID;
 }GameState;
 
 typedef struct Script{
@@ -132,6 +140,11 @@ typedef const struct Action{
 	const Script *selectedScript;
 	u8 cooldown;
 }Action;
+
+typedef const struct WitchAction{
+	const Script *parity0Script;
+	const Script *parity1Script;
+}WitchAction;
 
 //external data
 extern enum FrameState frameState;

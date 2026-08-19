@@ -43,16 +43,17 @@ extern cu32 Player_TurnTiles[];
 extern cu32 Witch_TurnTiles[];
 extern cu32 item_throwTiles[];
 extern cu32 Templar_bonusesTiles[];
+extern cu32 Witch_AttacksTiles[];
 extern cu32 black_magic_animTiles[];
 extern cu32 black_magic_animMetaTiles[];
 extern cu32 slash_animationTiles[];
 extern cu32 slash_animationMetaTiles[];
-//extern cu32 twin_slash_animationTiles[];
-//extern cu32 twin_slash_animationMetaTiles[];
-//extern cu32 triple_slash_animationTiles[];
-//extern cu32 triple_slash_animationMetaTiles[];
-extern cu32 blood_blade_animationTiles[];
-extern cu32 blood_blade_animationMetaTiles[];
+extern cu32 Twin_Slash_animTiles[];
+extern cu32 Twin_Slash_animMetaTiles[];
+extern cu32 Triple_Slash_animTiles[];
+extern cu32 Triple_Slash_animMetaTiles[];
+extern cu32 blood_blade_animTiles[];
+extern cu32 blood_blade_animMetaTiles[];
 extern cu32 Summon_Blade_AnimTiles[];
 extern cu32 Summon_Blade_AnimMetaTiles[];
 //extern cu32 [];
@@ -100,16 +101,17 @@ Graphic graphicsList[]={
 {.data = Witch_TurnTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 1, .shape = 1, .size = 3},
 {.data = item_throwTiles, .numWords = 1728, .width = 2, .height = 4, .defaultPalette = 1, .shape = 2, .size = 2},
 {.data = Templar_bonusesTiles, .numWords = 4480, .width = 4, .height = 4, .defaultPalette = 1, .shape = 0, .size = 2},
+{.data = Templar_bonusesTiles, .numWords = 12288, .width = 8, .height = 8, .defaultPalette = 1, .shape = 0, .size = 3},
 {.data = black_magic_animTiles, .numWords = 728, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = black_magic_animMetaTiles, .numWords = 7200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = slash_animationMetaTiles, .numWords = 1200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
-//{.data = twin_slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
-//{.data = twin_slash_animationMetaTiles, .numWords = 2100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
-//{.data = triple_slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
-//{.data = triple_slash_animationMetaTiles, .numWords = 2100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
-{.data = blood_blade_animationTiles, .numWords = 4928, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
-{.data = blood_blade_animationMetaTiles, .numWords = 7500, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Twin_Slash_animTiles, .numWords = 1256, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Twin_Slash_animMetaTiles, .numWords = 2400, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Triple_Slash_animTiles, .numWords = 1392, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Triple_Slash_animMetaTiles, .numWords = 3600, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = blood_blade_animTiles, .numWords = 4928, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = blood_blade_animMetaTiles, .numWords = 7500, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = Summon_Blade_AnimTiles, .numWords = 3192, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = Summon_Blade_AnimMetaTiles, .numWords = 5100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 };

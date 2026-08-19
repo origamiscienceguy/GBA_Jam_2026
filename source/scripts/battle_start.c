@@ -21,6 +21,7 @@ void battleStartInit(){
 	gameState.actionPalette[9] = ACT_REFRESH;
 
 	gameState.itemThrowID = playAnimation(ANIM_MEAT_THROW, ITEM_THROW_X, 160);
+	gameState.witchAttackID = playAnimation(ANIM_EXPLOSION, EXPLOSION_X, 160);
 	gameState.templarBonusID = playAnimation(ANIM_GUARD, GUARD_X, 160);
 	gameState.templarAnimationID = playAnimation(ANIM_TEMPLAR_IDLE, TEMPLAR_X, TEMPLAR_Y);
 	gameState.witchAnimationID = playAnimation(ANIM_WITCH_IDLE, WITCH_X, WITCH_Y);

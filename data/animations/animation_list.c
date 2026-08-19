@@ -54,10 +54,13 @@ extern Animation meditate;
 extern Animation guard;
 extern Animation parry;
 extern Animation refresh;
+extern Animation hexAnim;
+extern Animation chargeAnim;
+extern Animation explosionAnim;
 extern FullScreenAnimation blackMagicAnim;
 extern FullScreenAnimation slashAnim;
-//extern FullScreenAnimation twinSlashAnim;
-//extern FullScreenAnimation tripleSlashAnim;
+extern FullScreenAnimation twinSlashAnim;
+extern FullScreenAnimation tripleSlashAnim;
 extern FullScreenAnimation bloodBladeAnim;
 extern FullScreenAnimation summonBladeAnim;
 
@@ -116,13 +119,16 @@ Animation *animationList[] = {
 	&refresh,
 	&guard,
 	&parry,
+	&hexAnim,
+	&chargeAnim,
+	&explosionAnim,
 };
 
 FullScreenAnimation *fullScreenAnimationList[] = {
 	&blackMagicAnim,
 	&slashAnim,
-//	&twinSlashAnim,
-//	&tripleSlashAnim,
+	&twinSlashAnim,
+	&tripleSlashAnim,
 	&bloodBladeAnim,
 	&summonBladeAnim,
 };

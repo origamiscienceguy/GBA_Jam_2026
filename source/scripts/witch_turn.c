@@ -2,8 +2,12 @@
 #include "sprite.h"
 
 
-Script witchActions[] = {
-
+WitchAction witchActions[] = {
+	{.parity0Script = &scriptList[SCR_MISSILE], .parity1Script = &scriptList[SCR_MISSILE]},
+	{.parity0Script = &scriptList[SCR_VAMPIRE], .parity1Script = &scriptList[SCR_VAMPIRE]},
+	{.parity0Script = &scriptList[SCR_BLOOD], .parity1Script = &scriptList[SCR_BLOOD]},
+	{.parity0Script = &scriptList[SCR_CHARGE], .parity1Script = &scriptList[SCR_EXPLOSION]},
+	{.parity0Script = &scriptList[SCR_HEX], .parity1Script = &scriptList[SCR_MISSILE]},
 };
 
 enum Intents phaseToIntent(enum Phase phase, u8 phaseParity){
@@ -16,11 +20,11 @@ enum Intents phaseToIntent(enum Phase phase, u8 phaseParity){
 		return INTENT_ATTACK;
 		break;
 		
-		case PHASE_EXPLOSIVE:
+		case PHASE_BLOOD:
 		return INTENT_ATTACK;
 		break;
 		
-		case PHASE_BLOOD:
+		case PHASE_EXPLOSIVE:
 		if(phaseParity){
 			return INTENT_ATTACK;
 		}
@@ -43,28 +47,13 @@ void witchTurnInit(){
 }
 
 void witchTurnRun(){
-	//figure out what the witch is doing
-	switch(gameState.witchPhase){
-		case PHASE_BASIC:
-		
-		break;
-		
-		case PHASE_VAMPIRE:
-		
-		break;
-		
-		case PHASE_EXPLOSIVE:
-		
-		break;
-		
-		case PHASE_BLOOD:
-		
-		break;
-		
-		case PHASE_CURSE:
-		
-		break;
+	//go to the witches current script
+	if(gameState.witchPhaseParity == 0){
+		witchActions[gameState.witchPhase].parity0Script->scriptInit();
+	}
+	else{
+		witchActions[gameState.witchPhase].parity1Script->scriptInit();
 	}
 	
-	scriptList[SCR_BATTLE_MANAGER].scriptInit();
+	//scriptList[SCR_BATTLE_MANAGER].scriptInit();
 }

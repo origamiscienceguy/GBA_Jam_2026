@@ -15,7 +15,7 @@
 //
 //======================================================================
 
-const unsigned int blood_blade_animationTiles[5016] __attribute__((aligned(4)))=
+const unsigned int blood_blade_animTiles[5016] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00001100,0x00012210,0x00012210,0x00001100,
@@ -724,7 +724,7 @@ const unsigned int blood_blade_animationTiles[5016] __attribute__((aligned(4)))=
 	0x00022222,0x00000200,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 };
 
-const unsigned int blood_blade_animationMetaTiles[7500] __attribute__((aligned(4)))=
+const unsigned int blood_blade_animMetaTiles[7500] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,

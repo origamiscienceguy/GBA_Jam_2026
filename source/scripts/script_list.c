@@ -34,6 +34,16 @@ extern void bloodBladeInit();
 extern void bloodBladeRun();
 extern void summonBladeInit();
 extern void summonBladeRun();
+extern void twinSlashInit();
+extern void twinSlashRun();
+extern void tripleSlashInit();
+extern void tripleSlashRun();
+extern void hexInit();
+extern void hexRun();
+extern void chargeInit();
+extern void chargeRun();
+extern void explosionInit();
+extern void explosionRun();
 
 Script scriptList[] = {
 	{.scriptInit = playerTurnInit, .scriptRun = playerTurnRun,},
@@ -41,7 +51,6 @@ Script scriptList[] = {
 	{.scriptInit = battleStartInit, .scriptRun = battleStartRun,},
 	{.scriptInit = battleManagerInit, .scriptRun = battleManagerRun,},
 	{.scriptInit = slashInit, .scriptRun = slashRun,},
-	{.scriptInit = missileInit, .scriptRun = missileRun,},
 	{.scriptInit = blackMagicInit, .scriptRun = blackMagicRun,},
 	{.scriptInit = meatInit, .scriptRun = meatRun,},
 	{.scriptInit = cranberryInit, .scriptRun = cranberryRun,},
@@ -53,4 +62,9 @@ Script scriptList[] = {
 	{.scriptInit = meditateInit, .scriptRun = meditateRun,},
 	{.scriptInit = bloodBladeInit, .scriptRun = bloodBladeRun,},
 	{.scriptInit = summonBladeInit, .scriptRun = summonBladeRun,},
+	{.scriptInit = twinSlashInit, .scriptRun = twinSlashRun,},
+	{.scriptInit = tripleSlashInit, .scriptRun = tripleSlashRun,},
+	{.scriptInit = hexInit, .scriptRun = hexRun,},
+	{.scriptInit = chargeInit, .scriptRun = chargeRun,},
+	{.scriptInit = explosionInit, .scriptRun = explosionRun,},
 };

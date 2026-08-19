@@ -31,3 +31,9 @@
 #define FOCUS_Y 64
 #define REFRESH_X 25
 #define REFRESH_Y 65
+#define HEX_X 20
+#define HEX_Y 20
+#define CHARGE_X 100
+#define CHARGE_Y 40
+#define EXPLOSION_X 20
+#define EXPLOSION_Y 20
