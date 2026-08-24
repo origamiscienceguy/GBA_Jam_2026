@@ -35,5 +35,5 @@
 #define HEX_Y 20
 #define CHARGE_X 100
 #define CHARGE_Y 40
-#define EXPLOSION_X 20
-#define EXPLOSION_Y 20
+#define EXPLOSION_X 6
+#define EXPLOSION_Y 42

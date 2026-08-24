@@ -44,6 +44,12 @@ extern void chargeInit();
 extern void chargeRun();
 extern void explosionInit();
 extern void explosionRun();
+extern void vampireInit();
+extern void vampireRun();
+extern void missileInit();
+extern void missileRun();
+extern void bloodInit();
+extern void bloodRun();
 
 Script scriptList[] = {
 	{.scriptInit = playerTurnInit, .scriptRun = playerTurnRun,},
@@ -67,4 +73,7 @@ Script scriptList[] = {
 	{.scriptInit = hexInit, .scriptRun = hexRun,},
 	{.scriptInit = chargeInit, .scriptRun = chargeRun,},
 	{.scriptInit = explosionInit, .scriptRun = explosionRun,},
+	{.scriptInit = vampireInit, .scriptRun = vampireRun,},
+	{.scriptInit = missileInit, .scriptRun = missileRun,},
+	{.scriptInit = bloodInit, .scriptRun = bloodRun,},
 };

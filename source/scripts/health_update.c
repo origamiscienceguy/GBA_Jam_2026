@@ -67,6 +67,15 @@ void witchHealthInterpolate(u32 currentHealth, u32 previousHealth, u32 maxHealth
 	changeAnimation(gameState.witchHealthFrontID, ANIM_HEALTH_BAR_0 - healthbarPos, WITCH_HEALTH_FRONT_X, WITCH_HEALTH_FRONT_Y);
 }
 
+void templarHealthInterpolate(u32 currentHealth, u32 previousHealth, u32 maxHealth, u8 step){
+	u32 templarInverseMax = maxHealthInverse[maxHealth - 1];
+	u32 healthbarPos = (templarInverseMax * currentHealth);
+	u32 previousHealthbarPos = (templarInverseMax * previousHealth);
+	u32 delta = previousHealthbarPos - healthbarPos;
+	healthbarPos = (previousHealthbarPos - ((delta * step) >> 5)) >> 11;
+	changeAnimation(gameState.templarHealthFrontID, ANIM_HEALTH_BAR_0 - healthbarPos, TEMPLAR_HEALTH_FRONT_X, TEMPLAR_HEALTH_FRONT_Y);
+}
+
 u8 generateHealthMessage(enum TextChar *healthMessage, u32 currentHealth, u32 maxHealth){
 	u8 textPos = 0;
 	if(currentHealth < 10){
@@ -106,7 +115,7 @@ u8 generateHealthMessage(enum TextChar *healthMessage, u32 currentHealth, u32 ma
 	return textPos;
 }
 
-void templarDamageScript(u32 currentFrame){
+u8 templarDamageScript(s32 currentFrame){
 	switch(currentFrame){
 		case 0:
 		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
@@ -125,9 +134,33 @@ void templarDamageScript(u32 currentFrame){
 		break;
 	}
 	
+	//change behavior if the templar is brought to zero health
 	if((currentFrame >= 16) && ((currentFrame - 33) < 16)){
-		templarHealthInterpolate(gameState.templarHealth, gameState.previousHealth, gameState.templarMaxHealth, (gameState.scriptCounter - 16));
+		templarHealthInterpolate(gameState.templarHealth, gameState.previousHealth, gameState.templarMaxHealth, (currentFrame - 16));
 	}
+	
+	if(gameState.templarHealth == 0){
+		//game over logic
+		return 1;
+	}
+	
+	else if(currentFrame < 50){
+		switch (currentFrame){
+			case 0:
+			changeAnimation(gameState.templarAnimationID, ANIM_TEMPLAR_HURT, TEMPLAR_X, TEMPLAR_Y);
+			break;
+			
+			case 26:
+			changeAnimation(gameState.templarAnimationID, ANIM_TEMPLAR_IDLE, TEMPLAR_X, TEMPLAR_Y);
+			break;
+		}
+	}
+	
+	else{
+		return 1;
+	}
+	
+	return 0;
 }
 
 u8 witchDamageScript(s32 currentFrame){
@@ -176,7 +209,7 @@ u8 witchDamageScript(s32 currentFrame){
 			witchLevelUp(currentFrame - 49);
 		}
 	}
-	else{
+	else if(currentFrame < 50){
 		switch (currentFrame){
 			case 0:
 			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_HURT, WITCH_X, WITCH_Y);
@@ -186,11 +219,10 @@ u8 witchDamageScript(s32 currentFrame){
 			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_IDLE, WITCH_X, WITCH_Y);
 			break;
 			
-			case 49:
-			return 1;
-			break;
-			
 		}
+	}
+	else{
+		return 1;
 	}
 	return 0;
 }

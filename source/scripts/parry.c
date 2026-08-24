@@ -30,7 +30,9 @@ void parryRun(){
 		changeAnimation(gameState.templarBonusID, ANIM_GUARD, GUARD_X, 160);
 		changeAnimation(gameState.templarAnimationID, ANIM_TEMPLAR_IDLE, TEMPLAR_X, TEMPLAR_Y);
 		gameState.defendStatus = 2;
-		gameState.selectedAction = gameState.savedSelectedAction;
+		break;
+		
+		case 60:
 		scriptList[SCR_BATTLE_MANAGER].scriptInit();
 		break;
 	}

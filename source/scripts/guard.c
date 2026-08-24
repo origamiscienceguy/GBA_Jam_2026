@@ -32,8 +32,7 @@ void guardRun(){
 		gameState.defendStatus = 1;
 		break;
 		
-		case 32:
-		gameState.selectedAction = gameState.savedSelectedAction;
+		case 60:
 		scriptList[SCR_BATTLE_MANAGER].scriptInit();
 		break;
 	}

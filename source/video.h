@@ -231,7 +231,7 @@ void templarHealthUpdate(u32, u32, u8);
 void witchHealthUpdate(u32, u32, u8);
 void templarHealthInterpolate(u32, u32, u32, u8);
 void witchHealthInterpolate(u32, u32, u32, u8);
-void templarDamageScript(u32);
+u8 templarDamageScript(s32);
 u8 witchDamageScript(s32);
 void templarLevelUpdate(u8);
 void witchLevelUpdate(u8, u8);

@@ -101,7 +101,7 @@ Graphic graphicsList[]={
 {.data = Witch_TurnTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 1, .shape = 1, .size = 3},
 {.data = item_throwTiles, .numWords = 1728, .width = 2, .height = 4, .defaultPalette = 1, .shape = 2, .size = 2},
 {.data = Templar_bonusesTiles, .numWords = 4480, .width = 4, .height = 4, .defaultPalette = 1, .shape = 0, .size = 2},
-{.data = Templar_bonusesTiles, .numWords = 12288, .width = 8, .height = 8, .defaultPalette = 1, .shape = 0, .size = 3},
+{.data = Witch_AttacksTiles, .numWords = 12288, .width = 8, .height = 8, .defaultPalette = 1, .shape = 0, .size = 3},
 {.data = black_magic_animTiles, .numWords = 728, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = black_magic_animMetaTiles, .numWords = 7200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
