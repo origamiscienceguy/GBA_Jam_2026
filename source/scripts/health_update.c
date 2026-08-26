@@ -191,6 +191,7 @@ u8 witchDamageScript(s32 currentFrame){
 		switch (currentFrame){
 			case 0:
 			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_DEAD, WITCH_X, WITCH_Y);
+			gameState.currentTurn++;
 			break;
 			
 			case 56:

@@ -7,6 +7,7 @@ void battleManagerInit(){
 }
 
 void battleManagerRun(){
+	intentUpdate(phaseToIntent(gameState.witchPhase, gameState.witchPhaseParity));
 	//if it is the player's turn
 	if(gameState.currentTurn != 0){
 		for(u32 i = 0; i < 10; i++){

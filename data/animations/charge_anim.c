@@ -4,7 +4,7 @@ u32 chargePosFrames[] = {0, 1000};
 u32 chargeXPos[] = {0};
 u32 chargeYPos[] = {0};
 u32 chargeGfxFrames[] = {0, 6, 12, 18, 24, 30, 36, 42, 1000};
-u32 chargeGfx[] = {15, 16, 17, 18, 17, 18, 17, 19};
+u32 chargeGfx[] = {19, 20, 21, 22, 21, 22, 21, 23};
 
 Animation chargeAnim = {
 	.numFrames = 48,

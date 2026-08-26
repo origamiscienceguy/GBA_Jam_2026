@@ -38,8 +38,8 @@ void battleStartInit(){
 	
 	gameState.selectedAction = 0;
 	gameState.numAvailableActions = 10;
-	gameState.witchHealth = 4;
-	gameState.witchMaxHealth = 4;
+	gameState.witchHealth = 60;
+	gameState.witchMaxHealth = 60;
 	gameState.templarHealth = 25;
 	gameState.templarMaxHealth = 25;
 	gameState.witchHealthMessageID = 0xff;
@@ -52,8 +52,8 @@ void battleStartInit(){
 	gameState.witchLevelMessageID = 0xff;
 	gameState.intentMessageID = 0xff;
 	gameState.currentTurn = 1;
-	gameState.witchPhase = PHASE_EXPLOSIVE;
-	gameState.witchPhaseParity = 1;
+	gameState.witchPhase = PHASE_CURSE;
+	gameState.witchPhaseParity = 0;
 	gameState.witchPhaseLevel = 1;
 	gameState.criticalHit = 0;
 	gameState.defendStatus = 0;

@@ -49,9 +49,11 @@ void witchTurnInit(){
 void witchTurnRun(){
 	//go to the witches current script
 	if(gameState.witchPhaseParity == 0){
+		gameState.witchPhaseParity = 1;
 		witchActions[gameState.witchPhase].parity0Script->scriptInit();
 	}
 	else{
+		gameState.witchPhaseParity = 0;
 		witchActions[gameState.witchPhase].parity1Script->scriptInit();
 	}
 	
