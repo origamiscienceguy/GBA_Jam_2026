@@ -1,7 +1,7 @@
 #include "main.h"
 #include "sprite.h"
 
-#define HITFRAME 54
+#define HITFRAME 30
 
 void vampireInit(){
 	gameState.currentScript = SCR_VAMPIRE;
@@ -14,8 +14,12 @@ void vampireRun(){
 	switch (gameState.scriptCounter){
 		case 0:
 		gameState.selectedAction = 0xFF;
-		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_MISSILE, WITCH_X, WITCH_Y);
-		playSfx(MISSILE_1);
+		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_DRAIN, WITCH_X, WITCH_Y);
+		startFullScreenAnim(FSANIM_DRAIN);
+		break;
+		
+		case HITFRAME - 2:
+		playSfx(MISSILE_2);
 		break;
 		
 		case HITFRAME:
@@ -27,6 +31,14 @@ void vampireRun(){
 			else{
 				gameState.templarHealth = 0;
 			}
+			
+			if((gameState.witchHealth + (gameState.witchDamage >> 1)) >= gameState.witchMaxHealth){
+				gameState.witchHealth = gameState.witchMaxHealth;
+			}
+			else{
+				gameState.witchHealth += (gameState.witchDamage >> 1);
+			}
+			witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 		}
 		else if(gameState.defendStatus == 2){
 			gameState.previousHealth = gameState.witchHealth;
@@ -39,7 +51,11 @@ void vampireRun(){
 		}
 		break;
 		
-		case 66:
+		case HITFRAME + 30:
+		playSfx(RESTORE);
+		break;
+		
+		case 114:
 		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_IDLE, WITCH_X, WITCH_Y);
 		break;
 	}

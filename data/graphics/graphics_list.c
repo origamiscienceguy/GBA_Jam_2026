@@ -56,6 +56,12 @@ extern cu32 blood_blade_animTiles[];
 extern cu32 blood_blade_animMetaTiles[];
 extern cu32 Summon_Blade_AnimTiles[];
 extern cu32 Summon_Blade_AnimMetaTiles[];
+extern cu32 Drain_animTiles[];
+extern cu32 Drain_animMetaTiles[];
+extern cu32 Missile_animTiles[];
+extern cu32 Missile_animMetaTiles[];
+extern cu32 Blood_Missile_animTiles[];
+extern cu32 Blood_Missile_animMetaTiles[];
 //extern cu32 [];
 
 Graphic graphicsList[]={
@@ -114,5 +120,11 @@ Graphic graphicsList[]={
 {.data = blood_blade_animMetaTiles, .numWords = 7500, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = Summon_Blade_AnimTiles, .numWords = 3192, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = Summon_Blade_AnimMetaTiles, .numWords = 5100, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Drain_animTiles, .numWords = 2088, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Drain_animMetaTiles, .numWords = 4800, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Missile_animTiles, .numWords = 1040, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Missile_animMetaTiles, .numWords = 4200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Blood_Missile_animTiles, .numWords = 1040, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = Blood_Missile_animMetaTiles, .numWords = 4200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 };
 //{.data = , .size = 32, .width = 2, .height = 2, .defaultPalette = 1},

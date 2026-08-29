@@ -15,7 +15,12 @@ void missileRun(){
 		case 0:
 		gameState.selectedAction = 0xFF;
 		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_MISSILE, WITCH_X, WITCH_Y);
-		playSfx(MISSILE_1);
+		playSfx(MISSILE_FULL);
+		
+		break;
+		
+		case 12:
+		startFullScreenAnim(FSANIM_MISSILE);
 		break;
 		
 		case HITFRAME:

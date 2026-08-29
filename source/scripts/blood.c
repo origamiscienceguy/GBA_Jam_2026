@@ -14,11 +14,24 @@ void bloodRun(){
 	switch (gameState.scriptCounter){
 		case 0:
 		gameState.selectedAction = 0xFF;
-		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_MISSILE, WITCH_X, WITCH_Y);
+		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_BLOOD_MISSILE, WITCH_X, WITCH_Y);
+		startFullScreenAnim(FSANIM_BLOOD_MISSILE);
 		playSfx(MISSILE_1);
 		break;
 		
+		case HITFRAME - 2:
+		playSfx(SLASH);
+		break;
+		
 		case HITFRAME:
+		if((gameState.witchDamage >> 1) >= gameState.witchHealth){
+			gameState.witchHealth = 1;
+		}
+		else{
+		gameState.witchHealth -= (gameState.witchDamage >> 1);
+		}
+		witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
+		
 		if(gameState.defendStatus == 0){
 			gameState.previousHealth = gameState.templarHealth;
 			if(gameState.templarHealth > gameState.witchDamage){
@@ -39,7 +52,15 @@ void bloodRun(){
 		}
 		break;
 		
-		case 66:
+		case HITFRAME + 8:
+		playSfx(SLASH);
+		break;
+		
+		case HITFRAME + 18:
+		playSfx(SLASH);
+		break;
+		
+		case 94:
 		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_IDLE, WITCH_X, WITCH_Y);
 		break;
 	}
