@@ -27,6 +27,18 @@ void playerTurnInit(){
 void playerTurnRun(){
 	//check inputs, move selected action accordingly
 	if(inputs.pressed & KEY_A){
+		if(gameState.actionPalette[gameState.selectedAction] == ACT_ICE_CREAM || gameState.actionPalette[gameState.selectedAction] == ACT_MEAT || gameState.actionPalette[gameState.selectedAction] == ACT_CRANBERRY){
+		
+		}
+		else if(gameState.currentTurn == 0){
+			gameState.currentTurn = 5;
+			turnUpdate();
+			gameState.currentTurn = 0;
+		}
+		else{
+			turnUpdate();
+		}
+		
 		actions[gameState.actionPalette[gameState.selectedAction]].selectedScript->scriptInit();
 	}
 	else if(inputs.pressed & KEY_RIGHT){

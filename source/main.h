@@ -126,6 +126,10 @@ typedef struct GameState{
 	u8 templarExp;
 	u8 templarNeededExp;
 	u8 witchAttackID;
+	u8 deathblow1ID;
+	u8 deathblow2ID;
+	u8 deathblow3ID;
+	u8 activeDeathblows;
 }GameState;
 
 typedef struct Script{

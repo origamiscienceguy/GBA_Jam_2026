@@ -12,6 +12,7 @@ void twinSlashInit(){
 }
 
 void twinSlashRun(){
+	u8 damage;
 	switch (gameState.scriptCounter){
 		case 0:
 		gameState.selectedAction = 0xFF;
@@ -32,10 +33,16 @@ void twinSlashRun(){
 		break;
 		
 		case HITFRAME1:
+		if(gameState.criticalHit){
+			damage = gameState.templarDamage * 2;
+		}
+		else{
+			damage = gameState.templarDamage;
+		}
 		playSfx(SLASH);
 		gameState.previousHealth = gameState.witchHealth;
-		if(gameState.witchHealth > gameState.templarDamage){
-			gameState.witchHealth -= gameState.templarDamage;
+		if(gameState.witchHealth > damage){
+			gameState.witchHealth -= damage;
 		}
 		else{
 			gameState.witchHealth = 0;
@@ -47,9 +54,17 @@ void twinSlashRun(){
 		break;
 		
 		case HITFRAME2:
+		if(gameState.criticalHit){
+			damage = gameState.templarDamage * 2;
+			gameState.criticalHit = 0;
+			statusUpdate();
+		}
+		else{
+			damage = gameState.templarDamage;
+		}
 		playSfx(SLASH);
-		if(gameState.witchHealth > gameState.templarDamage){
-			gameState.witchHealth -= gameState.templarDamage;
+		if(gameState.witchHealth > damage){
+			gameState.witchHealth -= damage;
 		}
 		else{
 			gameState.witchHealth = 0;

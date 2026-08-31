@@ -33,9 +33,18 @@ void summonBladeRun(){
 		break;
 		
 		case HITFRAME:
+		u8 damage;
+		if(gameState.criticalHit){
+			damage = gameState.templarDamage * 6;
+			gameState.criticalHit = 0;
+			statusUpdate();
+		}
+		else{
+			damage = gameState.templarDamage * 3;
+		}
 		gameState.previousHealth = gameState.witchHealth;
-		if(gameState.witchHealth > (gameState.templarDamage * 3)){
-			gameState.witchHealth -= (gameState.templarDamage * 3);
+		if(gameState.witchHealth > (damage)){
+			gameState.witchHealth -= (damage);
 		}
 		else{
 			gameState.witchHealth = 0;

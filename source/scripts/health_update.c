@@ -192,6 +192,23 @@ u8 witchDamageScript(s32 currentFrame){
 			case 0:
 			changeAnimation(gameState.witchAnimationID, ANIM_WITCH_DEAD, WITCH_X, WITCH_Y);
 			gameState.currentTurn++;
+			turnUpdate();
+			switch(gameState.activeDeathblows){
+				case 0:
+				changeAnimation(gameState.deathblow1ID, ANIM_DEATHBLOW, DEATHBLOW_X, DEATHBLOW_Y);
+				gameState.activeDeathblows = 1;
+				break;
+				
+				case 1:
+				changeAnimation(gameState.deathblow2ID, ANIM_DEATHBLOW, DEATHBLOW_X, DEATHBLOW_Y);
+				gameState.activeDeathblows = 2;
+				break;
+				
+				case 2:
+				changeAnimation(gameState.deathblow3ID, ANIM_DEATHBLOW, DEATHBLOW_X, DEATHBLOW_Y);
+				gameState.activeDeathblows = 3;
+				break;
+			}
 			break;
 			
 			case 56:

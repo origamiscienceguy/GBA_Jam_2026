@@ -10,16 +10,19 @@ void battleStartInit(){
 	}
 	//set the starting action palette
 	gameState.actionPalette[0] = ACT_SLASH;
-	gameState.actionPalette[1] = ACT_GUARD;
-	gameState.actionPalette[2] = ACT_FOCUS;
-	gameState.actionPalette[3] = ACT_BLACK_MAGIC;
+	gameState.actionPalette[1] = ACT_PARRY;
+	gameState.actionPalette[2] = ACT_MEAT;
+	gameState.actionPalette[3] = ACT_TRIPLE_SLASH;
 	gameState.actionPalette[4] = ACT_BLOOD_BLADE;
-	gameState.actionPalette[5] = ACT_SUMMON_BLADE;
-	gameState.actionPalette[6] = ACT_TWIN_SLASH;
+	gameState.actionPalette[5] = ACT_CRANBERRY;
+	gameState.actionPalette[6] = ACT_ICE_CREAM;
 	gameState.actionPalette[7] = ACT_TRIPLE_SLASH;
-	gameState.actionPalette[8] = ACT_PARRY;
+	gameState.actionPalette[8] = ACT_MEDITATE;
 	gameState.actionPalette[9] = ACT_REFRESH;
 
+	gameState.deathblow1ID = playAnimation(ANIM_DEATHBLOW, 240, 160);
+	gameState.deathblow2ID = playAnimation(ANIM_DEATHBLOW, 240, 160);
+	gameState.deathblow3ID = playAnimation(ANIM_DEATHBLOW, 240, 160);
 	gameState.itemThrowID = playAnimation(ANIM_MEAT_THROW, ITEM_THROW_X, 160);
 	gameState.witchAttackID = playAnimation(ANIM_EXPLOSION, EXPLOSION_X, 160);
 	gameState.templarBonusID = playAnimation(ANIM_GUARD, GUARD_X, 160);
@@ -59,6 +62,7 @@ void battleStartInit(){
 	gameState.defendStatus = 0;
 	gameState.templarExp = 0;
 	gameState.templarNeededExp = 7;
+	gameState.activeDeathblows = 0;
 	
 	witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 	witchLevelUpdate(gameState.witchLevel, 0);
@@ -70,7 +74,7 @@ void battleStartInit(){
 		gameState.actionCooldown[i] = 0;
 		gameState.cooldownTextID[i] = 0xff;
 	}
-	
+	turnUpdate();
 	scriptList[SCR_BATTLE_MANAGER].scriptInit();
 }
 	

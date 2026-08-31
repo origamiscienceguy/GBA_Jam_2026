@@ -57,6 +57,7 @@ extern Animation refresh;
 extern Animation hexAnim;
 extern Animation chargeAnim;
 extern Animation explosionAnim;
+extern Animation deathblowAnim;
 extern FullScreenAnimation blackMagicAnim;
 extern FullScreenAnimation slashAnim;
 extern FullScreenAnimation twinSlashAnim;
@@ -125,6 +126,7 @@ Animation *animationList[] = {
 	&hexAnim,
 	&chargeAnim,
 	&explosionAnim,
+	&deathblowAnim,
 };
 
 FullScreenAnimation *fullScreenAnimationList[] = {

@@ -4,6 +4,9 @@
 void battleManagerInit(){
 	gameState.currentScript = SCR_BATTLE_MANAGER;
 	gameState.scriptCounter = 0;
+	turnUpdate();
+	statusUpdate();
+	gameState.activeDeathblows = 0;
 }
 
 void battleManagerRun(){

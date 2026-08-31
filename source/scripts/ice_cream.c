@@ -31,7 +31,9 @@ void iceCreamRun(){
 		case 48:
 		changeAnimation(gameState.itemThrowID, ANIM_MEAT_THROW, ITEM_THROW_X, 160);
 		playSfx(RESTORE);
-		gameState.currentTurn++;
+		gameState.currentTurn += 2;
+		turnUpdate();
+		gameState.currentTurn--;
 		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
 		break;
 		

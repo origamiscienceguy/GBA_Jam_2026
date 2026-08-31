@@ -32,6 +32,7 @@ void cranberryRun(){
 		changeAnimation(gameState.itemThrowID, ANIM_MEAT_THROW, ITEM_THROW_X, 160);
 		playSfx(RESTORE);
 		gameState.criticalHit = 1;
+		statusUpdate();
 		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
 		break;
 		

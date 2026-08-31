@@ -44,6 +44,10 @@ extern cu32 Witch_TurnTiles[];
 extern cu32 item_throwTiles[];
 extern cu32 Templar_bonusesTiles[];
 extern cu32 Witch_AttacksTiles[];
+extern cu32 Turn_MarkerTiles[];
+extern cu32 DefenseTiles[];
+extern cu32 CriticalTiles[];
+extern cu32 DeathblowTiles[];
 extern cu32 black_magic_animTiles[];
 extern cu32 black_magic_animMetaTiles[];
 extern cu32 slash_animationTiles[];
@@ -108,6 +112,10 @@ Graphic graphicsList[]={
 {.data = item_throwTiles, .numWords = 1728, .width = 2, .height = 4, .defaultPalette = 1, .shape = 2, .size = 2},
 {.data = Templar_bonusesTiles, .numWords = 4480, .width = 4, .height = 4, .defaultPalette = 1, .shape = 0, .size = 2},
 {.data = Witch_AttacksTiles, .numWords = 12288, .width = 8, .height = 8, .defaultPalette = 1, .shape = 0, .size = 3},
+{.data = Turn_MarkerTiles, .numWords = 8, .width = 1, .height = 1, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = DefenseTiles, .numWords = 16, .width = 1, .height = 1, .defaultPalette = 1, .shape = 0, .size = 0},
+{.data = CriticalTiles, .numWords = 32, .width = 2, .height = 2, .defaultPalette = 1, .shape = 0, .size = 1},
+{.data = DeathblowTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 0, .shape = 1, .size = 3},
 {.data = black_magic_animTiles, .numWords = 728, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = black_magic_animMetaTiles, .numWords = 7200, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},
 {.data = slash_animationTiles, .numWords = 352, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},

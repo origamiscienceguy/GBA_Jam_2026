@@ -37,3 +37,5 @@
 #define CHARGE_Y 48
 #define EXPLOSION_X 6
 #define EXPLOSION_Y 42
+#define DEATHBLOW_X 180
+#define DEATHBLOW_Y 20

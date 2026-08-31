@@ -68,6 +68,10 @@ enum GraphicsEnum{
 	GFX_ITEM_THROW,
 	GFX_TEMPLAR_BONUSES,
 	GFX_WITCH_ATTACKS,
+	GFX_TURN_MARKER,
+	GFX_DEFENSE,
+	GFX_CRITICAL,
+	GFX_DEATHBLOW,
 	GFX_BLACK_MAGIC_ANIM,
 	GFX_BLACK_MAGIC_MAP,
 	GFX_SLASH_ANIM,
@@ -146,6 +150,7 @@ enum AnimationEnum{
 	ANIM_HEX,
 	ANIM_CHARGE,
 	ANIM_EXPLOSION,
+	ANIM_DEATHBLOW
 };
 
 enum FullScreenAnimationEnum{
@@ -248,3 +253,5 @@ void intentUpdate(u8);
 void witchLevelUp(u32);
 u8 phaseToIntent(u8, u8);
 void startFullScreenAnim(u8);
+void statusUpdate();
+void turnUpdate();

@@ -42,6 +42,10 @@ void missileRun(){
 				gameState.witchHealth = 0;
 			}
 		}
+		u8 savedDefendStatus = gameState.defendStatus;
+		gameState.defendStatus = 0;
+		statusUpdate();
+		gameState.defendStatus = savedDefendStatus;
 		break;
 		
 		case 66:

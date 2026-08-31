@@ -30,6 +30,7 @@ void guardRun(){
 		changeAnimation(gameState.templarBonusID, ANIM_GUARD, GUARD_X, 160);
 		changeAnimation(gameState.templarAnimationID, ANIM_TEMPLAR_IDLE, TEMPLAR_X, TEMPLAR_Y);
 		gameState.defendStatus = 1;
+		statusUpdate();
 		break;
 		
 		case 60:

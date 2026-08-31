@@ -68,6 +68,10 @@ void videoInit(){
 	se_mem[28][23 + 6 * 32] = 1 + 0x18A3;
 	se_mem[28][24 + 6 * 32] = 2 + 0x18A3;
 	
+	memcpy32(&(tile_mem[0][178]), graphicsList[GFX_TURN_MARKER].data, graphicsList[GFX_TURN_MARKER].numWords);
+	memcpy32(&(tile_mem[0][179]), graphicsList[GFX_DEFENSE].data, graphicsList[GFX_DEFENSE].numWords);
+	memcpy32(&(tile_mem[0][181]), graphicsList[GFX_CRITICAL].data, graphicsList[GFX_CRITICAL].numWords);
+	
 }
 
 void vblankUpdate(){

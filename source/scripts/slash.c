@@ -31,10 +31,19 @@ void slashRun(){
 		break;
 		
 		case HITFRAME:
+		u8 damage;
+		if(gameState.criticalHit){
+			damage = gameState.templarDamage * 2;
+			gameState.criticalHit = 0;
+			statusUpdate();
+		}
+		else{
+			damage = gameState.templarDamage;
+		}
 		playSfx(SLASH);
 		gameState.previousHealth = gameState.witchHealth;
-		if(gameState.witchHealth > gameState.templarDamage){
-			gameState.witchHealth -= gameState.templarDamage;
+		if(gameState.witchHealth > damage){
+			gameState.witchHealth -= damage;
 		}
 		else{
 			gameState.witchHealth = 0;
