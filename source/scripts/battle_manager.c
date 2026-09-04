@@ -10,6 +10,9 @@ void battleManagerInit(){
 }
 
 void battleManagerRun(){
+	if(gameState.templarLevelUpCounter != 0xff){
+		return;
+	}
 	intentUpdate(phaseToIntent(gameState.witchPhase, gameState.witchPhaseParity));
 	//if it is the player's turn
 	if(gameState.currentTurn != 0){

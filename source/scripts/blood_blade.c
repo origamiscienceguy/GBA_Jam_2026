@@ -49,6 +49,14 @@ void bloodBladeRun(){
 		else{
 			gameState.witchHealth = 0;
 		}
+		if((gameState.templarExp + damage) >= gameState.templarNeededExp){
+			gameState.templarExp = gameState.templarExp + damage - gameState.templarNeededExp;
+			gameState.templarLevelUpCounter = 0;
+			gameState.templarLevelSfxDelay = 80;
+		}
+		else{
+			gameState.templarExp += damage;
+		}
 		break;
 		
 		case HITFRAME + 40:

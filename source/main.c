@@ -16,6 +16,10 @@ int main(){
 		animationManager();
 		//process the currently-running script
 		scriptList[gameState.currentScript].scriptRun();
+		//if the templar is leveling up, handle that.
+		if(gameState.templarLevelUpCounter != 0xFF){
+			templarLevelUp();
+		}
 		
 		//debug();
 		frameState = WAITING_FOR_VBLANK;

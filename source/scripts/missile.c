@@ -41,6 +41,15 @@ void missileRun(){
 			else{
 				gameState.witchHealth = 0;
 			}
+			u8 damage = gameState.witchDamage;
+			if((gameState.templarExp + damage) >= gameState.templarNeededExp){
+				gameState.templarExp = gameState.templarExp + damage - gameState.templarNeededExp;
+				gameState.templarLevelUpCounter = 0;
+				gameState.templarLevelSfxDelay = 25;
+			}
+			else{
+				gameState.templarExp += damage;
+			}
 		}
 		u8 savedDefendStatus = gameState.defendStatus;
 		gameState.defendStatus = 0;

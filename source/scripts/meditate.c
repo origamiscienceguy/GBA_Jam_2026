@@ -28,8 +28,9 @@ void meditateRun(){
 		
 		case 34:
 		if((gameState.templarExp + 8) >= gameState.templarNeededExp){
-			gameState.templarExp = 0;
-			//templarLevelUp();
+			gameState.templarExp = gameState.templarExp + 8 - gameState.templarNeededExp;
+			gameState.templarLevelUpCounter = 0;
+			gameState.templarLevelSfxDelay = 5;
 		}
 		else{
 			gameState.templarExp += 8;

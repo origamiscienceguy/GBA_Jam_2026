@@ -48,6 +48,14 @@ void tripleSlashRun(){
 		else{
 			gameState.witchHealth = 0;
 		}
+		if((gameState.templarExp + damage) >= gameState.templarNeededExp){
+			gameState.templarExp = gameState.templarExp + damage - gameState.templarNeededExp;
+			gameState.templarLevelUpCounter = 0;
+			gameState.templarLevelSfxDelay = 40;
+		}
+		else{
+			gameState.templarExp += damage;
+		}
 		break;
 		
 		case HITFRAME2 - 2:
@@ -67,6 +75,14 @@ void tripleSlashRun(){
 		}
 		else{
 			gameState.witchHealth = 0;
+		}
+		if((gameState.templarExp + damage) >= gameState.templarNeededExp){
+			gameState.templarExp = gameState.templarExp + damage - gameState.templarNeededExp;
+			gameState.templarLevelUpCounter = 0;
+			gameState.templarLevelSfxDelay = 30;
+		}
+		else{
+			gameState.templarExp += damage;
 		}
 		break;
 		
@@ -89,6 +105,14 @@ void tripleSlashRun(){
 		}
 		else{
 			gameState.witchHealth = 0;
+		}
+		if((gameState.templarExp + damage) >= gameState.templarNeededExp){
+			gameState.templarExp = gameState.templarExp + damage - gameState.templarNeededExp;
+			gameState.templarLevelUpCounter = 0;
+			gameState.templarLevelSfxDelay = 20;
+		}
+		else{
+			gameState.templarExp += damage;
 		}
 		break;
 		

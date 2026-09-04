@@ -28,8 +28,9 @@ void focusRun(){
 		
 		case 34:
 		if((gameState.templarExp + 5) >= gameState.templarNeededExp){
-			gameState.templarExp = 0;
-			//templarLevelUp();
+			gameState.templarExp = gameState.templarExp + 5 - gameState.templarNeededExp;
+			gameState.templarLevelUpCounter = 0;
+			gameState.templarLevelSfxDelay = 5;
 		}
 		else{
 			gameState.templarExp += 5;

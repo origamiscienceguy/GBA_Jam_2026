@@ -30,7 +30,13 @@ void witchLevelUpdate(u8 newLevel, u8 hide){
 	gameState.witchLevelMessageID = writeText(sampleText);
 }
 
-void templarLevelUpdate(u8 newLevel){
+void templarLevelUpdate(u8 newLevel, u8 hide){
+	if(hide){
+		closeText(gameState.templarLevelMessageID);
+		gameState.templarLevelMessageID = 0xFF;
+		return;
+	}
+	
 	enum TextChar templarLevelMessage[6] = {L, V, L, SPACE, SPACE, SPACE};
 	if(newLevel < 10){
 		templarLevelMessage[4] = ZERO + newLevel;
