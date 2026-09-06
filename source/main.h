@@ -132,6 +132,9 @@ typedef struct GameState{
 	u8 activeDeathblows;
 	u8 templarLevelUpCounter;
 	u8 templarLevelSfxDelay;
+	u8 templarLevelUpsAvailable;
+	u8 levelUpsTextID;
+	u8 expAmountTextID;
 }GameState;
 
 typedef struct Script{

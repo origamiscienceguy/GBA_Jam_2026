@@ -39,3 +39,7 @@
 #define EXPLOSION_Y 42
 #define DEATHBLOW_X 180
 #define DEATHBLOW_Y 20
+#define LEVEL_UPS_X 14
+#define LEVEL_UPS_Y 12
+#define EXP_X 60
+#define EXP_Y 12

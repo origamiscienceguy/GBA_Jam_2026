@@ -26,43 +26,88 @@ void playerTurnInit(){
 
 void playerTurnRun(){
 	//check inputs, move selected action accordingly
-	if(inputs.pressed & KEY_A){
-		if(gameState.actionPalette[gameState.selectedAction] == ACT_ICE_CREAM || gameState.actionPalette[gameState.selectedAction] == ACT_MEAT || gameState.actionPalette[gameState.selectedAction] == ACT_CRANBERRY){
-		
+	if((inputs.pressed & KEY_START) || (inputs.pressed & KEY_SELECT)){
+		openSkillTree();
+	}
+	else if(inputs.pressed & KEY_A){
+		if(gameState.selectedAction < 10){
+			if(gameState.actionPalette[gameState.selectedAction] == ACT_ICE_CREAM || 
+				gameState.actionPalette[gameState.selectedAction] == ACT_MEAT || 
+				gameState.actionPalette[gameState.selectedAction] == ACT_CRANBERRY){
+				
+			}
+			else if(gameState.currentTurn == 0){
+				gameState.currentTurn = 5;
+				turnUpdate();
+				gameState.currentTurn = 0;
+			}
+			else{
+				turnUpdate();
+			}
 		}
-		else if(gameState.currentTurn == 0){
-			gameState.currentTurn = 5;
-			turnUpdate();
-			gameState.currentTurn = 0;
+		else if(gameState.selectedAction == 10){
+			openSkillTree();
 		}
-		else{
-			turnUpdate();
+		else if(gameState.selectedAction == 11){
+			gameOver();
 		}
 		
 		actions[gameState.actionPalette[gameState.selectedAction]].selectedScript->scriptInit();
 	}
 	else if(inputs.pressed & KEY_RIGHT){
-		do{
-			if(gameState.selectedAction == gameState.numAvailableActions - 1){
-				gameState.selectedAction = 0;
+		if(gameState.selectedAction < 10){
+			do{
+				if(gameState.selectedAction == gameState.numAvailableActions - 1){
+					gameState.selectedAction = 0;
+				}
+				else{
+					gameState.selectedAction++;
+				}
 			}
-			else{
-				gameState.selectedAction++;
-			}
+			while(gameState.actionCooldown[gameState.selectedAction] != 0);
+			
 		}
-		while(gameState.actionCooldown[gameState.selectedAction] != 0);
+		else if(gameState.selectedAction == 10){
+			gameState.selectedAction = 11;
+		}
+		else if(gameState.selectedAction == 11){
+			gameState.selectedAction = 10;
+		}
 		playSfx(BUTTON_SELECT_1);
 	}
 	else if(inputs.pressed & KEY_LEFT){
-		do{
-			if(gameState.selectedAction == 0){
-				gameState.selectedAction = gameState.numAvailableActions - 1;
+		if(gameState.selectedAction < 10){
+			do{
+				if(gameState.selectedAction == 0){
+					gameState.selectedAction = gameState.numAvailableActions - 1;
+				}
+				else{
+					gameState.selectedAction--;
+				}
 			}
-			else{
-				gameState.selectedAction--;
-			}
+			while(gameState.actionCooldown[gameState.selectedAction] != 0);
 		}
-		while(gameState.actionCooldown[gameState.selectedAction] != 0);
+		else if(gameState.selectedAction == 10){
+			gameState.selectedAction = 11;
+		}
+		else if(gameState.selectedAction == 11){
+			gameState.selectedAction = 10;
+		}
+		playSfx(BUTTON_SELECT_1);
+	}
+	else if((inputs.pressed & KEY_UP) || (inputs.pressed & KEY_DOWN)){
+		if(gameState.selectedAction <= 4){
+			gameState.selectedAction = 10;
+		}
+		else if(gameState.selectedAction <= 9){
+			gameState.selectedAction = 11;
+		}
+		else if(gameState.selectedAction == 10){
+			gameState.selectedAction = 0;
+		}
+		else if(gameState.selectedAction == 11){
+			gameState.selectedAction = gameState.numAvailableActions - 1;
+		}
 		playSfx(BUTTON_SELECT_1);
 	}
 	drawActionPalette();

@@ -71,6 +71,8 @@ void videoInit(){
 	memcpy32(&(tile_mem[0][178]), graphicsList[GFX_TURN_MARKER].data, graphicsList[GFX_TURN_MARKER].numWords);
 	memcpy32(&(tile_mem[0][179]), graphicsList[GFX_DEFENSE].data, graphicsList[GFX_DEFENSE].numWords);
 	memcpy32(&(tile_mem[0][181]), graphicsList[GFX_CRITICAL].data, graphicsList[GFX_CRITICAL].numWords);
+	memcpy32(&(tile_mem[0][185]), graphicsList[GFX_EXP_BAR].data, graphicsList[GFX_EXP_BAR].numWords);
+	memcpy32(&(tile_mem[0][211]), graphicsList[GFX_EXP_BAR_TIP].data, graphicsList[GFX_EXP_BAR_TIP].numWords);
 	
 }
 

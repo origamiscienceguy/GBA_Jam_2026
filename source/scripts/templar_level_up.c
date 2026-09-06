@@ -8,6 +8,7 @@ void templarLevelUp(){
 		gameState.templarNeededExp += 6;
 		gameState.templarHealth = gameState.templarMaxHealth;
 		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
+		gameState.templarLevelUpsAvailable++;
 		break;
 		
 		case 4:

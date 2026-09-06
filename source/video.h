@@ -72,6 +72,8 @@ enum GraphicsEnum{
 	GFX_DEFENSE,
 	GFX_CRITICAL,
 	GFX_DEATHBLOW,
+	GFX_EXP_BAR,
+	GFX_EXP_BAR_TIP,
 	GFX_BLACK_MAGIC_ANIM,
 	GFX_BLACK_MAGIC_MAP,
 	GFX_SLASH_ANIM,
@@ -257,3 +259,5 @@ u8 phaseToIntent(u8, u8);
 void startFullScreenAnim(u8);
 void statusUpdate();
 void turnUpdate();
+void openSkillTree();
+void gameOver();

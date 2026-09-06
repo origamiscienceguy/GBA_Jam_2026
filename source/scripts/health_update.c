@@ -140,7 +140,7 @@ u8 templarDamageScript(s32 currentFrame){
 	}
 	
 	if(gameState.templarHealth == 0){
-		//game over logic
+		//gameOver();
 		return 1;
 	}
 	

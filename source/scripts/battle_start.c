@@ -65,6 +65,9 @@ void battleStartInit(){
 	gameState.activeDeathblows = 0;
 	gameState.templarLevelUpCounter = 0xFF;
 	gameState.templarLevelSfxDelay = 0;
+	gameState.levelUpsTextID = 0xff;
+	gameState.expAmountTextID = 0xff;
+	gameState.templarLevelUpsAvailable = 0;
 	
 	witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 	witchLevelUpdate(gameState.witchLevel, 0);
