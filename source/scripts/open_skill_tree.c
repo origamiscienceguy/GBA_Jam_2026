@@ -51,7 +51,15 @@ void openSkillTreeInit(){
 	}
 	
 	gameState.selectedSkill = SKILL_ATTACK_1;
-	gameState.skillStates[SKILL_ATTACK_1] = SKILL_AVAILABLE_VIEWED;
+	if(gameState.skillStates[gameState.selectedSkill] == SKILL_AVAILABLE){
+		gameState.skillStates[gameState.selectedSkill] = SKILL_AVAILABLE_VIEWED;
+	}
+	else if(gameState.skillStates[gameState.selectedSkill] == SKILL_PURCHASED){
+		gameState.skillStates[gameState.selectedSkill] = SKILL_PURCHASED_VIEWED;
+	}
+	else{
+		gameState.skillStates[gameState.selectedSkill] = SKILL_LOCKED_VIEWED;
+	}
 	REG_BG1CNT = BG_4BPP | BG_REG_32x32 | BG_PRIO(1) | BG_CBB(1) | BG_SBB(29);
 	
 	//setup the skills based on their current state

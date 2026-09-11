@@ -54,7 +54,7 @@ void playerTurnRun(){
 			gameOver();
 		}
 	}
-	else if(inputs.pressed & KEY_RIGHT){
+	else if((inputs.pressed & KEY_RIGHT) || (inputs.pressed & KEY_R)){
 		if(gameState.selectedAction < 10){
 			do{
 				if(gameState.selectedAction == gameState.numAvailableActions - 1){
@@ -75,7 +75,7 @@ void playerTurnRun(){
 		}
 		playSfx(BUTTON_SELECT_1);
 	}
-	else if(inputs.pressed & KEY_LEFT){
+	else if((inputs.pressed & KEY_LEFT) || (inputs.pressed & KEY_L)){
 		if(gameState.selectedAction < 10){
 			do{
 				if(gameState.selectedAction == 0){

@@ -10,15 +10,6 @@ void battleStartInit(){
 	}
 	//set the starting action palette
 	gameState.actionPalette[0] = ACT_SLASH;
-	gameState.actionPalette[1] = ACT_PARRY;
-	gameState.actionPalette[2] = ACT_FOCUS;
-	gameState.actionPalette[3] = ACT_TRIPLE_SLASH;
-	gameState.actionPalette[4] = ACT_BLOOD_BLADE;
-	gameState.actionPalette[5] = ACT_BLACK_MAGIC;
-	gameState.actionPalette[6] = ACT_SUMMON_BLADE;
-	gameState.actionPalette[7] = ACT_TWIN_SLASH;
-	gameState.actionPalette[8] = ACT_MEDITATE;
-	gameState.actionPalette[9] = ACT_REFRESH;
 
 	gameState.deathblow1ID = playAnimation(ANIM_DEATHBLOW, 240, 160);
 	gameState.deathblow2ID = playAnimation(ANIM_DEATHBLOW, 240, 160);
@@ -40,7 +31,7 @@ void battleStartInit(){
 	playSong(MAIN_LOOP);
 	
 	gameState.selectedAction = 0;
-	gameState.numAvailableActions = 10;
+	gameState.numAvailableActions = 1;
 	gameState.witchHealth = 4;
 	gameState.witchMaxHealth = 4;
 	gameState.templarHealth = 5;

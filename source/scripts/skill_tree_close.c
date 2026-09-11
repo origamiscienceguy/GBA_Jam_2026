@@ -22,6 +22,16 @@ void skillTreeCloseRun(){
 		closeText(gameState.skillNameID);
 	}	
 	
+	if(gameState.skillStates[gameState.selectedSkill] == SKILL_AVAILABLE_VIEWED){
+		gameState.skillStates[gameState.selectedSkill] = SKILL_AVAILABLE;
+	}
+	else if(gameState.skillStates[gameState.selectedSkill] == SKILL_LOCKED_VIEWED){
+		gameState.skillStates[gameState.selectedSkill] = SKILL_LOCKED;
+	}
+	else{
+		gameState.skillStates[gameState.selectedSkill] = SKILL_PURCHASED;
+	}
+	
 	intentUpdate(phaseToIntent(gameState.witchPhase, gameState.witchPhaseParity));
 	witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 	templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);

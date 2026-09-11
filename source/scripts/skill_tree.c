@@ -9,7 +9,22 @@ void skillTreeRun(){
 	if(inputs.pressed & KEY_B){
 		scriptList[SCR_CLOSE_SKILL_TREE].scriptInit();
 	}
-	else if(inputs.pressed & KEY_LEFT){
+	else if(inputs.pressed & KEY_A){
+		if((gameState.skillStates[gameState.selectedSkill] == SKILL_AVAILABLE_VIEWED) && 
+			(skills[gameState.selectedSkill].cost <= gameState.templarLevelUpsAvailable)){
+			gameState.templarLevelUpsAvailable -= skills[gameState.selectedSkill].cost;
+			gameState.skillStates[gameState.selectedSkill] = SKILL_PURCHASED_VIEWED;
+			if(skills[gameState.selectedSkill].unlockList[0] != SKILL_NONE){
+				gameState.skillStates[skills[gameState.selectedSkill].unlockList[0]] = SKILL_AVAILABLE;
+			}
+			if(skills[gameState.selectedSkill].unlockList[1] != SKILL_NONE){
+				gameState.skillStates[skills[gameState.selectedSkill].unlockList[1]] = SKILL_AVAILABLE;
+			}
+			playSfx(POWER_UP);
+			unlockFunctions[skills[gameState.selectedSkill].skillUnlockScript](gameState.selectedSkill);
+		}
+	}
+	else if((inputs.pressed & KEY_LEFT) || (inputs.pressed & KEY_L)){
 		playSfx(BUTTON_SELECT_1);
 		if(gameState.skillStates[gameState.selectedSkill] == SKILL_AVAILABLE_VIEWED){
 			gameState.skillStates[gameState.selectedSkill] = SKILL_AVAILABLE;
@@ -31,7 +46,7 @@ void skillTreeRun(){
 			gameState.skillStates[gameState.selectedSkill] = SKILL_LOCKED_VIEWED;
 		}
 	}
-	else if(inputs.pressed & KEY_RIGHT){
+	else if((inputs.pressed & KEY_RIGHT) || (inputs.pressed & KEY_R)){
 		playSfx(BUTTON_SELECT_1);
 		if(gameState.skillStates[gameState.selectedSkill] == SKILL_AVAILABLE_VIEWED){
 			gameState.skillStates[gameState.selectedSkill] = SKILL_AVAILABLE;

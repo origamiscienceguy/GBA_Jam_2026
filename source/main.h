@@ -209,6 +209,7 @@ typedef const struct Skill{
 	cu8 line1Length;
 	cu8 line2Length;
 	const enum Actions replaces;
+	const enum Actions action;
 }Skill;
 
 typedef const struct WitchAction{
@@ -223,6 +224,7 @@ extern Script scriptList[];
 extern Inputs inputs;
 extern Action actions[];
 extern Skill skills[];
+extern void (*unlockFunctions[])(u8);
 
 //function declarations
 void initialize();
