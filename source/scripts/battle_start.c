@@ -68,12 +68,26 @@ void battleStartInit(){
 	gameState.levelUpsTextID = 0xff;
 	gameState.expAmountTextID = 0xff;
 	gameState.templarLevelUpsAvailable = 0;
+	gameState.selectedSkill = 1;
+	gameState.skillNameID = 0xff;
+	gameState.skillLine1ID = 0xff;
+	gameState.skillLine2ID = 0xff;
+	gameState.skillCostID = 0xff;
 	
 	witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 	witchLevelUpdate(gameState.witchLevel, 0);
 	templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
 	templarLevelUpdate(gameState.templarLevel, 0);
 	intentUpdate(INTENT_ATTACK);
+	
+	for(u32 i = 1; i < 20; i++){
+		if(skills[i].startAvailable == 1){
+			gameState.skillStates[i] = SKILL_AVAILABLE;
+		}
+		else{
+			gameState.skillStates[i] = SKILL_LOCKED;
+		}
+	}
 	
 	for(u32 i = 0; i < 10; i++){
 		gameState.actionCooldown[i] = 0;

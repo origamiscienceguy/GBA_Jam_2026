@@ -27,7 +27,7 @@ void playerTurnInit(){
 void playerTurnRun(){
 	//check inputs, move selected action accordingly
 	if((inputs.pressed & KEY_START) || (inputs.pressed & KEY_SELECT)){
-		openSkillTree();
+		scriptList[SCR_OPEN_SKILL_TREE].scriptInit();
 	}
 	else if(inputs.pressed & KEY_A){
 		if(gameState.selectedAction < 10){
@@ -44,15 +44,15 @@ void playerTurnRun(){
 			else{
 				turnUpdate();
 			}
+			actions[gameState.actionPalette[gameState.selectedAction]].selectedScript->scriptInit();
 		}
 		else if(gameState.selectedAction == 10){
-			openSkillTree();
+			scriptList[SCR_OPEN_SKILL_TREE].scriptInit();
+			return;
 		}
 		else if(gameState.selectedAction == 11){
 			gameOver();
 		}
-		
-		actions[gameState.actionPalette[gameState.selectedAction]].selectedScript->scriptInit();
 	}
 	else if(inputs.pressed & KEY_RIGHT){
 		if(gameState.selectedAction < 10){

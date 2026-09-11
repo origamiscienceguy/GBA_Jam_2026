@@ -74,6 +74,10 @@ enum GraphicsEnum{
 	GFX_DEATHBLOW,
 	GFX_EXP_BAR,
 	GFX_EXP_BAR_TIP,
+	GFX_SKILLS,
+	GFX_SKILLS_MAP,
+	GFX_SKILL_TREE_BACKGROUND,
+	GFX_SKILL_TREE_BACKGROUND_MAP,
 	GFX_BLACK_MAGIC_ANIM,
 	GFX_BLACK_MAGIC_MAP,
 	GFX_SLASH_ANIM,
@@ -259,5 +263,5 @@ u8 phaseToIntent(u8, u8);
 void startFullScreenAnim(u8);
 void statusUpdate();
 void turnUpdate();
-void openSkillTree();
 void gameOver();
+void refreshSkills();

@@ -44,6 +44,38 @@ enum Phase{
 	PHASE_CURSE,
 };
 
+enum SkillState{
+	SKILL_LOCKED,
+	SKILL_AVAILABLE,
+	SKILL_PURCHASED,
+	SKILL_AVAILABLE_VIEWED,
+	SKILL_LOCKED_VIEWED,
+	SKILL_PURCHASED_VIEWED
+};
+
+enum Skills{
+	SKILL_NONE,
+	SKILL_ATTACK_1,
+	SKILL_ATTACK_2,
+	SKILL_ATTACK_3,
+	SKILL_TWIN_SLASH,
+	SKILL_TRIPLE_SLASH,
+	SKILL_SUMMON_BLADE,
+	SKILL_BLOOD_BLADE,
+	SKILL_BLACK_MAGIC,
+	SKILL_MEAT,
+	SKILL_CRANBERRY,
+	SKILL_ICE_CREAM,
+	SKILL_FOCUS,
+	SKILL_MEDITATE,
+	SKILL_GUARD,
+	SKILL_PARRY,
+	SKILL_REFRESH,
+	SKILL_DEFENSE_1,
+	SKILL_DEFENSE_2,
+	SKILL_DEFENSE_3,
+};
+
 enum Scripts{
 	SCR_PLAYER_TURN,
 	SCR_WITCH_TURN,
@@ -69,8 +101,10 @@ enum Scripts{
 	SCR_VAMPIRE,
 	SCR_MISSILE,
 	SCR_BLOOD,
+	SCR_OPEN_SKILL_TREE,
+	SCR_SKILL_TREE,
+	SCR_CLOSE_SKILL_TREE,
 	SCR_MAIN_MENU,
-	SCR_SETTINGS,
 };
 
 //struct declarations
@@ -88,6 +122,7 @@ typedef struct GameState{
 	enum Actions actionPalette[10];
 	u8 actionCooldown[10];
 	u8 cooldownTextID[10];
+	enum SkillState skillStates[20];
 	enum Phase witchPhase;
 	u8 witchPhaseParity;
 	u8 witchPhaseLevel;
@@ -135,6 +170,11 @@ typedef struct GameState{
 	u8 templarLevelUpsAvailable;
 	u8 levelUpsTextID;
 	u8 expAmountTextID;
+	u8 selectedSkill;
+	u8 skillNameID;
+	u8 skillLine1ID;
+	u8 skillLine2ID;
+	u8 skillCostID;
 }GameState;
 
 typedef struct Script{
@@ -150,6 +190,27 @@ typedef const struct Action{
 	u8 cooldown;
 }Action;
 
+typedef const struct Skill{
+	const enum Skills unlockList[2];
+	cu8 xPos;
+	cu8 yPos;
+	cu8 cost;
+	cu8 startAvailable;
+	cu8 graphicPos;
+	cu8 skillUnlockScript;
+	cu8 nameIndex;
+	cu8 line1Index;
+	cu8 line2Index;
+	const enum Skills upSkill;
+	const enum Skills downSkill;
+	const enum Skills leftSkill;
+	const enum Skills rightSkill;
+	cu8 nameLength;
+	cu8 line1Length;
+	cu8 line2Length;
+	const enum Actions replaces;
+}Skill;
+
 typedef const struct WitchAction{
 	const Script *parity0Script;
 	const Script *parity1Script;
@@ -161,6 +222,7 @@ extern GameState gameState;
 extern Script scriptList[];
 extern Inputs inputs;
 extern Action actions[];
+extern Skill skills[];
 
 //function declarations
 void initialize();

@@ -50,6 +50,12 @@ extern void missileInit();
 extern void missileRun();
 extern void bloodInit();
 extern void bloodRun();
+extern void openSkillTreeInit();
+extern void openSkillTreeRun();
+extern void skillTreeInit();
+extern void skillTreeRun();
+extern void skillTreeCloseInit();
+extern void skillTreeCloseRun();
 
 Script scriptList[] = {
 	{.scriptInit = playerTurnInit, .scriptRun = playerTurnRun,},
@@ -76,4 +82,7 @@ Script scriptList[] = {
 	{.scriptInit = vampireInit, .scriptRun = vampireRun,},
 	{.scriptInit = missileInit, .scriptRun = missileRun,},
 	{.scriptInit = bloodInit, .scriptRun = bloodRun,},
+	{.scriptInit = openSkillTreeInit, .scriptRun = openSkillTreeRun,},
+	{.scriptInit = skillTreeInit, .scriptRun = skillTreeRun,},
+	{.scriptInit = skillTreeCloseInit, .scriptRun = skillTreeCloseRun,},
 };
