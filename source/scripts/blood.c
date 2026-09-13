@@ -24,11 +24,12 @@ void bloodRun(){
 		break;
 		
 		case HITFRAME:
-		if((gameState.witchDamage >> 1) >= gameState.witchHealth){
+		u8 selfDamage = ((gameState.witchDamage * 171) >> 8);
+		if(selfDamage >= gameState.witchHealth){
 			gameState.witchHealth = 1;
 		}
 		else{
-		gameState.witchHealth -= ((gameState.witchDamage * 171) >> 8);
+		gameState.witchHealth -= selfDamage;
 		}
 		witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 		

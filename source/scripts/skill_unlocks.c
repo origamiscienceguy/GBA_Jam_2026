@@ -313,4 +313,5 @@ void actionUnlock(enum Skills skill){
 		}
 	}
 	gameState.actionPalette[slot] = skills[skill].action;
+	gameState.actionCooldown[slot] = 0;
 }
