@@ -104,6 +104,7 @@ enum Scripts{
 	SCR_OPEN_SKILL_TREE,
 	SCR_SKILL_TREE,
 	SCR_CLOSE_SKILL_TREE,
+	SCR_GAME_OVER,
 	SCR_MAIN_MENU,
 };
 
@@ -175,6 +176,7 @@ typedef struct GameState{
 	u8 skillLine1ID;
 	u8 skillLine2ID;
 	u8 skillCostID;
+	u16 totalDamage;
 }GameState;
 
 typedef struct Script{

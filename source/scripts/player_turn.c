@@ -51,7 +51,9 @@ void playerTurnRun(){
 			return;
 		}
 		else if(gameState.selectedAction == 11){
-			gameOver();
+			playSfx(SLASH);
+			scriptList[SCR_GAME_OVER].scriptInit();
+			return;
 		}
 	}
 	else if((inputs.pressed & KEY_RIGHT) || (inputs.pressed & KEY_R)){

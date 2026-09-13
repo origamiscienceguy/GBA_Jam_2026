@@ -2,6 +2,9 @@
 #include "sprite.h"
 
 void battleStartInit(){
+	for(u32 i = 0; i < 16; i++){
+		endAnimation(i);
+	}
 	//setup the starting action palette
 
 	//debug
@@ -64,6 +67,7 @@ void battleStartInit(){
 	gameState.skillLine1ID = 0xff;
 	gameState.skillLine2ID = 0xff;
 	gameState.skillCostID = 0xff;
+	gameState.totalDamage = 0;
 	
 	witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 	witchLevelUpdate(gameState.witchLevel, 0);
@@ -85,6 +89,8 @@ void battleStartInit(){
 		gameState.cooldownTextID[i] = 0xff;
 	}
 	turnUpdate();
+	Palette palette = {PalettesBitmap[0], PalettesBitmap[1]};
+	setPalette(palette);
 	scriptList[SCR_BATTLE_MANAGER].scriptInit();
 }
 	

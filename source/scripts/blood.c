@@ -28,7 +28,7 @@ void bloodRun(){
 			gameState.witchHealth = 1;
 		}
 		else{
-		gameState.witchHealth -= (gameState.witchDamage >> 1);
+		gameState.witchHealth -= ((gameState.witchDamage * 171) >> 8);
 		}
 		witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
 		

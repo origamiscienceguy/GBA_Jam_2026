@@ -73,7 +73,7 @@ void videoInit(){
 	memcpy32(&(tile_mem[0][181]), graphicsList[GFX_CRITICAL].data, graphicsList[GFX_CRITICAL].numWords);
 	memcpy32(&(tile_mem[0][185]), graphicsList[GFX_EXP_BAR].data, graphicsList[GFX_EXP_BAR].numWords);
 	memcpy32(&(tile_mem[0][211]), graphicsList[GFX_EXP_BAR_TIP].data, graphicsList[GFX_EXP_BAR_TIP].numWords);
-	
+	memcpy32(&(tile_mem[0][224]), graphicsList[GFX_RESIGN_BUTTON].data, graphicsList[GFX_RESIGN_BUTTON].numWords);
 }
 
 void vblankUpdate(){
@@ -135,6 +135,7 @@ void changeAnimation(u8 slot, u32 animationID, u32 xPos, u32 yPos){
 
 void endAnimation(u8 slot){
 	activeAnimations[slot].mode = ANIMMANAGER_UNUSED;
+	animationStartingTile = 55;
 	//rework the graphics associated with animations
 	
 }

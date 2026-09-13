@@ -170,12 +170,12 @@ Skill skills[20] = {
 	{.unlockList = {SKILL_PARRY, SKILL_REFRESH}, .xPos = 22, .yPos = 6, .cost = 1, .startAvailable = 0, 
 		.graphicPos = 12, .skillUnlockScript = 1, .nameIndex = 11, .line1Index = 11, .line2Index = 0,
 		.upSkill = SKILL_FOCUS, .downSkill = SKILL_REFRESH, .leftSkill = SKILL_MEDITATE, .rightSkill = SKILL_DEFENSE_2,
-		.nameLength = 5, .line1Length = 17, .line2Length = 1, .replaces = ACT_GUARD, .action = ACT_GUARD},
+		.nameLength = 5, .line1Length = 17, .line2Length = 1, .replaces = ACT_EMPTY, .action = ACT_GUARD},
 	//parry
 	{.unlockList = {SKILL_NONE, SKILL_NONE}, .xPos = 18, .yPos = 10, .cost = 1, .startAvailable = 0, 
 		.graphicPos = 13, .skillUnlockScript = 1, .nameIndex = 12, .line1Index = 12, .line2Index = 0,
 		.upSkill = SKILL_MEDITATE, .downSkill = SKILL_MEDITATE, .leftSkill = SKILL_ICE_CREAM, .rightSkill = SKILL_REFRESH,
-		.nameLength = 5, .line1Length = 14, .line2Length = 1, .replaces = ACT_EMPTY, .action = ACT_PARRY},
+		.nameLength = 5, .line1Length = 14, .line2Length = 1, .replaces = ACT_GUARD, .action = ACT_PARRY},
 	//refresh
 	{.unlockList = {SKILL_NONE, SKILL_NONE}, .xPos = 22, .yPos = 10, .cost = 2, .startAvailable = 0, 
 		.graphicPos = 14, .skillUnlockScript = 1, .nameIndex = 13, .line1Index = 13, .line2Index = 3,

@@ -116,6 +116,7 @@ u8 generateHealthMessage(enum TextChar *healthMessage, u32 currentHealth, u32 ma
 }
 
 u8 templarDamageScript(s32 currentFrame){
+	
 	switch(currentFrame){
 		case 0:
 		templarHealthUpdate(gameState.templarHealth, gameState.templarMaxHealth, 0);
@@ -140,7 +141,7 @@ u8 templarDamageScript(s32 currentFrame){
 	}
 	
 	if(gameState.templarHealth == 0){
-		//gameOver();
+		scriptList[SCR_GAME_OVER].scriptInit();
 		return 1;
 	}
 	
@@ -167,6 +168,7 @@ u8 witchDamageScript(s32 currentFrame){
 	switch(currentFrame){
 		case 0:
 		witchHealthUpdate(gameState.witchHealth, gameState.witchMaxHealth, 0);
+		gameState.totalDamage += gameState.previousHealth - gameState.witchHealth;
 		break;
 		
 		case 4:

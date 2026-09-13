@@ -52,6 +52,9 @@ extern cu32 Exp_BarTiles[];
 extern cu32 Exp_Bar_TipTiles[];
 extern cu32 SkillsTiles[];
 extern cu32 SkillsMetaTiles[];
+extern cu32 Resign_ButtonTiles[];
+extern cu32 Stats_ScreenTiles[];
+extern cu32 Stats_ScreenMap[];
 extern cu32 Skill_Tree_BackgroundTiles[];
 extern cu32 Skill_Tree_BackgroundMap[];
 extern cu32 black_magic_animTiles[];
@@ -126,6 +129,9 @@ Graphic graphicsList[]={
 {.data = Exp_Bar_TipTiles, .numWords = 64, .width = 10, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = SkillsTiles, .numWords = 8160, .width = 3, .height = 3, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = SkillsMetaTiles, .numWords = 510, .width = 3, .height = 3, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Resign_ButtonTiles, .numWords = 160, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Stats_ScreenTiles, .numWords = 528, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Stats_ScreenMap, .numWords = 56, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Skill_Tree_BackgroundTiles, .numWords = 56, .width = 30, .height = 20, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Skill_Tree_BackgroundMap, .numWords = 300, .width = 30, .height = 20, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = black_magic_animTiles, .numWords = 728, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},

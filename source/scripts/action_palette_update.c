@@ -194,4 +194,30 @@ void drawActionPalette(){
 	}
 	TextField expText = {.xPos = EXP_X, .yPos = EXP_Y, .length = 5, .message = expMessage, .palette = 1,};
 	gameState.expAmountTextID = writeText(expText);
+	
+	//handle resign button
+	if(gameState.selectedAction != 11){
+		se_mem[28][24 + 1 * 32] = 0x10E0;
+		se_mem[28][25 + 1 * 32] = 0x10E1;
+		se_mem[28][26 + 1 * 32] = 0x10E2;
+		se_mem[28][27 + 1 * 32] = 0x10E3;
+		se_mem[28][28 + 1 * 32] = 0x10E4;
+		se_mem[28][24 + 2 * 32] = 0x10EA;
+		se_mem[28][25 + 2 * 32] = 0x10EB;
+		se_mem[28][26 + 2 * 32] = 0x10EC;
+		se_mem[28][27 + 2 * 32] = 0x10ED;
+		se_mem[28][28 + 2 * 32] = 0x10EE;
+	}
+	else{
+		se_mem[28][24 + 1 * 32] = 0x10E5;
+		se_mem[28][25 + 1 * 32] = 0x10E6;
+		se_mem[28][26 + 1 * 32] = 0x10E7;
+		se_mem[28][27 + 1 * 32] = 0x10E8;
+		se_mem[28][28 + 1 * 32] = 0x10E9;
+		se_mem[28][24 + 2 * 32] = 0x10EF;
+		se_mem[28][25 + 2 * 32] = 0x10F0;
+		se_mem[28][26 + 2 * 32] = 0x10F1;
+		se_mem[28][27 + 2 * 32] = 0x10F2;
+		se_mem[28][28 + 2 * 32] = 0x10F3;
+	}
 }
