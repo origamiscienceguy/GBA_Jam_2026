@@ -23,7 +23,7 @@ void hexRun(){
 		changeAnimation(gameState.witchAnimationID, ANIM_WITCH_IDLE, WITCH_X, WITCH_Y);
 		changeAnimation(gameState.witchAttackID, ANIM_HEX, HEX_X, 160);
 		for(u32 i = 1; i < 10; i++){
-			if(gameState.actionPalette[i] == 0xFF){
+			if(gameState.actionPalette[i] == ACT_EMPTY){
 				continue;
 			}
 			if(gameState.actionPalette[i] == ACT_REFRESH){

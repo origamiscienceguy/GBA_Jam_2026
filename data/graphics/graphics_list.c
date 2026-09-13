@@ -131,7 +131,7 @@ Graphic graphicsList[]={
 {.data = CriticalTiles, .numWords = 32, .width = 2, .height = 2, .defaultPalette = 1, .shape = 0, .size = 1},
 {.data = DeathblowTiles, .numWords = 256, .width = 8, .height = 4, .defaultPalette = 0, .shape = 1, .size = 3},
 {.data = Exp_BarTiles, .numWords = 208, .width = 10, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
-{.data = Exp_Bar_TipTiles, .numWords = 64, .width = 10, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Exp_Bar_TipTiles, .numWords = 80, .width = 10, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = SkillsTiles, .numWords = 8160, .width = 3, .height = 3, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = SkillsMetaTiles, .numWords = 510, .width = 3, .height = 3, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Resign_ButtonTiles, .numWords = 160, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},

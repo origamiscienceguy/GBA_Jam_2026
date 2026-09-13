@@ -141,10 +141,12 @@ void drawActionPalette(){
 	se_mem[28][8 + 1 * 32] = 0x10D4;
 	se_mem[28][9 + 1 * 32] = 0x10D5;
 	se_mem[28][10 + 1 * 32] = 0x10D6;
-	se_mem[28][7 + 2 * 32] = 0x10D7;
-	se_mem[28][8 + 2 * 32] = 0x10D8;
-	se_mem[28][9 + 2 * 32] = 0x10D9;
-	se_mem[28][10 + 2 * 32] = 0x10Da;
+	se_mem[28][11 + 1 * 32] = 0x10D7;
+	se_mem[28][7 + 2 * 32] = 0x10D8;
+	se_mem[28][8 + 2 * 32] = 0x10D9;
+	se_mem[28][9 + 2 * 32] = 0x10Da;
+	se_mem[28][10 + 2 * 32] = 0x10Db;
+	se_mem[28][11 + 2 * 32] = 0x10Dc;
 	
 	//write the messages
 	u8 levelUps = gameState.templarLevelUpsAvailable;
@@ -165,34 +167,66 @@ void drawActionPalette(){
 		gameState.levelUpsTextID = writeText(sampleText);
 	}
 	
-	enum TextChar expMessage[5] = {SPACE, SPACE, FORWARD_SLASH, SPACE, SPACE};
+	enum TextChar expMessage[7] = {SPACE, SPACE, SPACE, FORWARD_SLASH, SPACE, SPACE, SPACE};
 	if(gameState.expAmountTextID != 0xFF){
 		closeText(gameState.expAmountTextID);
 	}
+	u8 expNeededHundreds = 0;
 	u8 expNeededTens = 0;
 	u8 expNeededOnes = gameState.templarNeededExp;
+	u8 expHundreds = 0;
 	u8 expTens = 0;
 	u8 expOnes = gameState.templarExp;
+	
+	while(expNeededOnes >= 100){
+		expNeededOnes -= 100;
+		expNeededHundreds++;
+	}
 	while(expNeededOnes >= 10){
 		expNeededTens++;
 		expNeededOnes -= 10;
+	}
+	while(expOnes >= 100){
+		expOnes -= 100;
+		expHundreds++;
 	}
 	while(expOnes >= 10){
 		expTens++;
 		expOnes -= 10;
 	}
-	if(expTens > 0){
-		expMessage[0] = ZERO + expTens;
+	
+	if(expHundreds > 0){
+		expMessage[0] = ZERO + expHundreds;
+		expMessage[1] = ZERO + expTens;
+		expMessage[2] = ZERO + expOnes;
 	}
-	expMessage[1] = ZERO + expOnes;
-	if(expNeededTens > 0){
-		expMessage[3] = ZERO + expNeededTens;
-		expMessage[4] = ZERO + expNeededOnes;
+	else if(expTens > 0){
+		expMessage[0] = SPACE;
+		expMessage[1] = ZERO + expTens;
+		expMessage[2] = ZERO + expOnes;
 	}
 	else{
-		expMessage[3] = ZERO + expNeededOnes;
+		expMessage[0] = SPACE;
+		expMessage[1] = SPACE;
+		expMessage[2] = ZERO + expOnes;
 	}
-	TextField expText = {.xPos = EXP_X, .yPos = EXP_Y, .length = 5, .message = expMessage, .palette = 1,};
+	
+	if(expNeededHundreds > 0){
+		expMessage[4] = ZERO + expNeededHundreds;
+		expMessage[5] = ZERO + expNeededTens;
+		expMessage[6] = ZERO + expNeededOnes;
+	}
+	else if(expNeededTens > 0){
+		expMessage[6] = SPACE;
+		expMessage[4] = ZERO + expNeededTens;
+		expMessage[5] = ZERO + expNeededOnes;
+	}
+	else{
+		expMessage[5] = SPACE;
+		expMessage[6] = SPACE;
+		expMessage[4] = ZERO + expNeededOnes;
+	}
+	TextField expText = {.xPos = EXP_X - 2, .yPos = EXP_Y, .length = 7, .message = expMessage, .palette = 1,};
 	gameState.expAmountTextID = writeText(expText);
 	
 	//handle resign button

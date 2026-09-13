@@ -58,7 +58,8 @@ void gameOverRun(){
 		u8 ones = 0;
 		u8 tens = 0;
 		u8 hundreds = 0;
-		enum TextChar stat[3];
+		u8 thousands = 0;
+		enum TextChar stat[4];
 		
 		while(gameState.witchLevel >= 10){
 			tens++;
@@ -69,11 +70,13 @@ void gameOverRun(){
 			stat[0] = ZERO + tens;
 			stat[1] = ZERO + ones;
 			stat[2] = SPACE;
+			stat[3] = SPACE;
 		}
 		else{
 			stat[0] = ZERO + ones;
 			stat[1] = SPACE;
 			stat[2] = SPACE;
+			stat[3] = SPACE;
 		}
 		if(gameState.skillNameID != 0xff){
 			closeText(gameState.skillNameID);
@@ -92,11 +95,13 @@ void gameOverRun(){
 			stat[0] = ZERO + tens;
 			stat[1] = ZERO + ones;
 			stat[2] = SPACE;
+			stat[3] = SPACE;
 		}
 		else{
 			stat[0] = ZERO + ones;
 			stat[1] = SPACE;
 			stat[2] = SPACE;
+			stat[3] = SPACE;
 		}
 		if(gameState.skillLine1ID != 0xff){
 			closeText(gameState.skillLine1ID);
@@ -106,6 +111,10 @@ void gameOverRun(){
 		
 		tens = 0;
 		ones = 0;
+		while(gameState.totalDamage>= 1000){
+			thousands++;
+			gameState.totalDamage -= 1000;
+		}
 		while(gameState.totalDamage >= 100){
 			hundreds++;
 			gameState.totalDamage -= 100;
@@ -115,25 +124,34 @@ void gameOverRun(){
 			gameState.totalDamage -= 10;
 		}
 		ones = gameState.totalDamage;
-		if(hundreds){
+		if(thousands){
+			stat[0] = ZERO + thousands;
+			stat[1] = ZERO + hundreds;
+			stat[2] = ZERO + tens;
+			stat[3] = ZERO + ones;	
+		}
+		else if(hundreds){
 			stat[0] = ZERO + hundreds;
 			stat[1] = ZERO + tens;
-			stat[2] = ZERO + ones;		
+			stat[2] = ZERO + ones;	
+			stat[3] = SPACE;	
 		}
 		else if(tens){
 			stat[0] = ZERO + tens;
 			stat[1] = ZERO + ones;
 			stat[2] = SPACE;
+			stat[3] = SPACE;
 		}
 		else{
 			stat[0] = ZERO + ones;
 			stat[1] = SPACE;
 			stat[2] = SPACE;
+			stat[3] = SPACE;
 		}
 		if(gameState.skillLine2ID != 0xff){
 			closeText(gameState.skillLine2ID);
 		}
-		TextField line2Text = {.xPos = STAT_X, .yPos = STAT_3_Y, .length = 3, .message = stat,  .palette = 0};
+		TextField line2Text = {.xPos = STAT_X, .yPos = STAT_3_Y, .length = 4, .message = stat,  .palette = 0};
 		gameState.skillLine2ID = writeText(line2Text);
 		
 		gameState.scriptCounter++;

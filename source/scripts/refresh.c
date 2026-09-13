@@ -28,6 +28,9 @@ void refreshRun(){
 		
 		case 34:
 		for(u32 i = 0; i < 10; i++){
+			if(gameState.actionPalette[i] == ACT_REFRESH){
+				continue;
+			}
 			if(gameState.actionCooldown[i] != 0){
 				gameState.actionCooldown[i]--;
 			}
