@@ -141,7 +141,7 @@ void gameOverRun(){
 	else{
 		if(inputs.pressed){
 			closeAllText();
-			scriptList[SCR_BATTLE_START].scriptInit();
+			scriptList[SCR_MAIN_MENU].scriptInit();
 		}
 	}
 }

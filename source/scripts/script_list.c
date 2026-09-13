@@ -58,6 +58,8 @@ extern void skillTreeCloseInit();
 extern void skillTreeCloseRun();
 extern void gameOverInit();
 extern void gameOverRun();
+extern void mainMenuInit();
+extern void mainMenuRun();
 
 Script scriptList[] = {
 	{.scriptInit = playerTurnInit, .scriptRun = playerTurnRun,},
@@ -88,4 +90,5 @@ Script scriptList[] = {
 	{.scriptInit = skillTreeInit, .scriptRun = skillTreeRun,},
 	{.scriptInit = skillTreeCloseInit, .scriptRun = skillTreeCloseRun,},
 	{.scriptInit = gameOverInit, .scriptRun = gameOverRun,},
+	{.scriptInit = mainMenuInit, .scriptRun = mainMenuRun,},
 };

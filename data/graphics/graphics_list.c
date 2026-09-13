@@ -55,6 +55,11 @@ extern cu32 SkillsMetaTiles[];
 extern cu32 Resign_ButtonTiles[];
 extern cu32 Stats_ScreenTiles[];
 extern cu32 Stats_ScreenMap[];
+extern cu32 Main_MenuTiles[];
+extern cu32 Main_MenuMap[];
+extern cu32 Animated_SwordTiles[];
+extern cu32 Animated_SwordMetaTiles[];
+extern cu32 Press_Any_ButtonTiles[];
 extern cu32 Skill_Tree_BackgroundTiles[];
 extern cu32 Skill_Tree_BackgroundMap[];
 extern cu32 black_magic_animTiles[];
@@ -132,6 +137,11 @@ Graphic graphicsList[]={
 {.data = Resign_ButtonTiles, .numWords = 160, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Stats_ScreenTiles, .numWords = 528, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Stats_ScreenMap, .numWords = 56, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Main_MenuTiles, .numWords = 1336, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Main_MenuMap, .numWords = 300, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Animated_SwordTiles, .numWords = 1440, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Animated_SwordMetaTiles, .numWords = 72, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
+{.data = Press_Any_ButtonTiles, .numWords = 80, .width = 5, .height = 2, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Skill_Tree_BackgroundTiles, .numWords = 56, .width = 30, .height = 20, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = Skill_Tree_BackgroundMap, .numWords = 300, .width = 30, .height = 20, .defaultPalette = 0, .shape = 0, .size = 0},
 {.data = black_magic_animTiles, .numWords = 728, .width = 30, .height = 20, .defaultPalette = 1, .shape = 0, .size = 0},

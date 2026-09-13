@@ -6,7 +6,7 @@ u8 vramSegmentsUsed = 0;
 AnimationEntry activeAnimations[16];
 u16 ActionPalettetilemapBuffer[64];
 u16 animationStartingTile = 55;
-enum FullScreenAnimationEnum currentFullScreenAnimation;
+enum FullScreenAnimationEnum currentFullScreenAnimation = FSANIM_NONE;
 u32 fsAnimCounter = 0;
 u32 fsAnimgfxCounter = 0;
 u32 fsAnimBuffer[320];
@@ -63,10 +63,6 @@ void videoInit(){
 		
 	}
 	memcpy32(&(tile_mem[0][163]), graphicsList[GFX_INTENTS].data, graphicsList[GFX_INTENTS].numWords);
-	se_mem[28][23 + 5 * 32] = 1 + 0x10A3;
-	se_mem[28][24 + 5 * 32] = 2 + 0x10A3;
-	se_mem[28][23 + 6 * 32] = 1 + 0x18A3;
-	se_mem[28][24 + 6 * 32] = 2 + 0x18A3;
 	
 	memcpy32(&(tile_mem[0][178]), graphicsList[GFX_TURN_MARKER].data, graphicsList[GFX_TURN_MARKER].numWords);
 	memcpy32(&(tile_mem[0][179]), graphicsList[GFX_DEFENSE].data, graphicsList[GFX_DEFENSE].numWords);

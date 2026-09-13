@@ -16,7 +16,7 @@ int main(){
 		animationManager();
 		//process the currently-running script
 		scriptList[gameState.currentScript].scriptRun();
-		//if the templar is leveling up, handle that.
+		//if the templar is leveling up, handle that. I know how spaghetti this is.
 		if(gameState.templarLevelUpCounter != 0xFF){
 			templarLevelUp();
 		}
@@ -35,7 +35,7 @@ void initialize(){
 	audioInit();
 	videoInit();
 	textInit();
-	scriptList[SCR_BATTLE_START].scriptInit();
+	scriptList[SCR_MAIN_MENU].scriptInit();
 }
 
 void interruptInit(){

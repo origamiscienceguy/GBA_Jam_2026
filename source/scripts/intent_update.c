@@ -3,6 +3,10 @@
 
 void intentUpdate(u8 intent){
 	enum TextChar intentMessage[2] = {SPACE, SPACE};
+	se_mem[28][23 + 5 * 32] = 1 + 0x10A3;
+	se_mem[28][24 + 5 * 32] = 2 + 0x10A3;
+	se_mem[28][23 + 6 * 32] = 1 + 0x18A3;
+	se_mem[28][24 + 6 * 32] = 2 + 0x18A3;
 
 	switch(intent){
 		case INTENT_ATTACK:
